@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PITC × ACS Correlations — San Diego (2013–2025) | Annie Mewkill</title>
+  <meta name="description" content="Interactive geospatial QA + correlation visualization comparing PIT count totals to ACS tract-level variables across multiple years." />
+
+  <style>
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .nav a { padding: 8px 12px; border: 1px solid rgba(127,127,127,0.35); border-radius: 12px; text-decoration: none; font-weight: 600; }
+    h1 { margin: 0 0 8px; letter-spacing: -0.02em; }
+    .meta { opacity: 0.85; margin: 0 0 16px; }
+    .card { border: 1px solid rgba(127,127,127,0.25); border-radius: 16px; padding: 16px; background: rgba(127,127,127,0.05); margin: 14px 0; }
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+    .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .btn { padding: 10px 14px; border: 1px solid rgba(127,127,127,0.35); border-radius: 12px; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="index.html">Projects</a>
+      <a href="../pipelines/geospatial-data-pipelines/">Pipelines</a>
+      <a href="../assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+    </nav>
+
+    <h1>PITC × ACS Correlations (San Diego County, 2013–2025)</h1>
+    <p class="meta">
+      Interactive p5.js map for exploring tract-level PIT count totals and Pearson correlation (r) with ACS demographic indicators across multiple years.
+    </p>
+
+    <div class="btnrow">
+      <a class="btn" href="../projects/pitc-acs/index.html">Launch interactive</a>
+      <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">View code</a>
+    </div>
+
+    <div class="card">
+      <h2>What this demonstrates</h2>
+      <ul>
+        <li>Multi-year data ingestion pattern (year-configured CSVs + shared tract geometry)</li>
+        <li>Schema normalization for messy real-world headers (candidate column matching)</li>
+        <li>Geospatial join strategy (tract IDs + pre-simplified GeoJSON geometry)</li>
+        <li>On-the-fly QA and interpretability features (hover details, legend, correlations panel)</li>
+        <li>Statistical computation (Pearson r) with safeguards for missing data and low sample size</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Data & assumptions</h2>
+      <ul>
+        <li>Inputs: PIT count totals by tract (selected years) + ACS 5-year tract indicators</li>
+        <li>Tract geometry: simplified San Diego County tract boundaries (GeoJSON)</li>
+        <li>Some PIT years may share the same ACS vintage if the newest ACS release is not available</li>
+        <li>Correlation is descriptive (linear association), not causal</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Pipeline alignment</h2>
+      <p>
+        This visualization sits at the “downstream” end of a typical geospatial ETL workflow:
+        ingest → transform → validate → output. Related pipeline structure:
+        <a href="../pipelines/geospatial-data-pipelines/">pipelines/geospatial-data-pipelines</a>.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
