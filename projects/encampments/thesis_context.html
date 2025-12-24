@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Thesis context and visuals for the Encampments + ACS (San Diego) project." />
+  <title>Encampments — Thesis Context — Annie Mewkill</title>
+
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+
+    .topbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 14px;
+      font-weight: 800;
+      background: rgba(127,127,127,0.10);
+    }
+    .btn:hover { background: rgba(127,127,127,0.18); }
+
+    h1 { margin: 10px 0 8px; font-size: 2rem; letter-spacing: -0.02em; }
+    .lead { max-width: 78ch; opacity: 0.9; margin: 0 0 18px; }
+
+    .grid { display: grid; gap: 16px; }
+    .card {
+      border: 1px solid rgba(127,127,127,0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(127,127,127,0.05);
+    }
+    .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .muted { opacity: 0.85; }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 840px) {
+      .two { grid-template-columns: 1fr 1fr; }
+    }
+
+    .figure {
+      border: 1px dashed rgba(127,127,127,0.35);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(127,127,127,0.03);
+    }
+    .figure .cap {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    ul { margin: 10px 0 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(127,127,127,0.2);
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+
+    code { font-size: 0.95em; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar" aria-label="Page navigation">
+      <a class="btn" href="/">← Home</a>
+      <a class="btn" href="/projects/">Projects</a>
+      <a class="btn" href="/projects/encampments/">Encampments</a>
+      <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
+    </div>
+
+    <header>
+      <h1>Encampments & SDoH (San Diego) — Thesis context</h1>
+      <p class="lead">
+        This page situates the encampments project within my thesis work on the relationship between
+        social determinants of health and the spatial distribution of homelessness in San Diego —
+        using privacy-preserving, tract-level aggregation.
+      </p>
+    </header>
+
+    <main class="grid">
+
+      <section class="card">
+        <h2>Research framing</h2>
+        <p class="muted" style="margin: 0;">
+          Core question: how do tract-level socioeconomic conditions (ACS proxies for SDoH) relate to
+          tract-level encampment presence/volume over time?
+        </p>
+        <ul>
+          <li><strong>Unit of analysis:</strong> Census tract (protects anonymity; no point locations)</li>
+          <li><strong>Exposure/features:</strong> ACS 5-year estimates (income, poverty, rent burden, etc.)</li>
+          <li><strong>Outcome:</strong> tract-aggregated encampment counts (or rate, if normalized)</li>
+          <li><strong>Goal:</strong> analysis-ready table for descriptives + statistical modeling</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Privacy + safety note</h2>
+        <p class="muted" style="margin: 0;">
+          Encampments are already aggregated by census tract to ensure safety and anonymity.
+          This workflow intentionally avoids publishing point-level locations or revealing sensitive detail.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Visuals</h2>
+        <div class="two">
+          <div class="figure">
+            <!-- Replace src with your actual image path -->
+            <!-- Example: <img src="/projects/encampments/assets/fig_tract_counts.png" alt="Tract-level encampment counts map"> -->
+            <div class="muted"><strong>Figure A</strong>: Tract-level encampment counts map (placeholder)</div>
+            <div class="cap">Drop an exported static map image here (PNG). Keep it tract-level only.</div>
+          </div>
+
+          <div class="figure">
+            <!-- Replace src with your actual image path -->
+            <!-- Example: <img src="/projects/encampments/assets/fig_scatter_income.png" alt="Encampments vs income scatterplot"> -->
+            <div class="muted"><strong>Figure B</strong>: Encampments vs ACS indicator (placeholder)</div>
+            <div class="cap">Add a scatterplot or binned plot (e.g., income / poverty / rent burden).</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Data + join logic (high-level)</h2>
+        <ul>
+          <li><strong>Join key:</strong> tract identifier (typically <code>GEOID</code>)</li>
+          <li><strong>Encampments table:</strong> <code>GEOID</code> + <code>encampment_count</code> (+ time fields if used)</li>
+          <li><strong>ACS table:</strong> <code>GEOID</code> + selected SDoH indicators (transformed/cleaned)</li>
+          <li><strong>Output:</strong> one row per tract (per year, if time series), ready for descriptives and models</li>
+        </ul>
+        <p class="muted" style="margin: 10px 0 0;">
+          If you want, we can add a short “Methods” section listing specific ACS variables and any normalization
+          (e.g., per-capita / per-area) you decide to include.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Related work</h2>
+        <p class="muted" style="margin: 0 0 10px;">
+          For interactive exploration and communication:
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="/projects/pitc-acs-correlation.html">PITC × ACS write-up</a>
+          <a class="btn" href="/projects/pitc-acs/">PITC × ACS demo</a>
+          <a class="btn" href="/projects/encampments/">Back to Encampments project</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Annie Mewkill
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
