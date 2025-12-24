@@ -17,39 +17,38 @@
     .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
 
     header { display: grid; gap: 12px; }
+
+    /* obvious HOME button */
+    .home-btn {
+      display: inline-block;
+      width: fit-content;
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 14px;
+      font-weight: 800;
+      background: rgba(127,127,127,0.12);
+    }
+    .home-btn:hover { background: rgba(127,127,127,0.2); }
+
     h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
     .lead { max-width: 70ch; opacity: 0.9; margin: 0; }
 
     .nav {
       display: flex;
       gap: 10px;
-      margin: 14px 0 10px;
+      margin: 8px 0 10px;
       flex-wrap: wrap;
     }
     .nav a {
       padding: 8px 12px;
       border: 1px solid rgba(127,127,127,0.35);
       border-radius: 12px;
-      font-weight: 600;
+      font-weight: 650;
+      background: rgba(127,127,127,0.06);
     }
+    .nav a:hover { background: rgba(127,127,127,0.12); }
 
-    .cta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 0 0 12px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(127,127,127,0.35);
-      border-radius: 14px;
-      font-weight: 700;
-      background: rgba(127,127,127,0.08);
-    }
-    .btn:hover { background: rgba(127,127,127,0.14); }
-
-    .grid { display: grid; gap: 16px; }
+    .grid { display: grid; gap: 16px; margin-top: 10px; }
 
     .card {
       border: 1px solid rgba(127,127,127,0.25);
@@ -71,36 +70,37 @@
 
     .links a {
       display: inline-block;
-      margin-right: 12px;
-      font-weight: 700;
+      margin: 6px 12px 0 0;
+      font-weight: 750;
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      background: rgba(127,127,127,0.06);
     }
+    .links a:hover { background: rgba(127,127,127,0.12); }
 
-    .schema {
+    /* tiny schema table */
+    .schema-wrap {
       margin-top: 10px;
-      border: 1px solid rgba(127,127,127,0.25);
+      overflow-x: auto;
       border-radius: 14px;
-      overflow: hidden;
+      border: 1px solid rgba(127,127,127,0.25);
       background: rgba(127,127,127,0.03);
     }
-    .schema table {
+    table.schema {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.95rem;
+      min-width: 720px;
     }
     .schema th, .schema td {
+      text-align: left;
       padding: 10px 12px;
-      border-top: 1px solid rgba(127,127,127,0.18);
+      border-bottom: 1px solid rgba(127,127,127,0.18);
       vertical-align: top;
     }
-    .schema tr:first-child th, .schema tr:first-child td { border-top: 0; }
-    .schema th {
-      width: 160px;
-      text-align: left;
-      opacity: 0.9;
-      font-weight: 800;
-      background: rgba(127,127,127,0.06);
-    }
-    .schema code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .schema th { font-weight: 800; opacity: 0.95; }
+    .schema td code { font-size: 0.92em; }
 
     footer {
       margin-top: 28px;
@@ -115,85 +115,89 @@
 <body>
   <div class="wrap">
     <header>
+      <a href="/" class="home-btn" aria-label="Back to home page">← Home</a>
+
       <h1>Projects</h1>
       <p class="lead">
         Selected projects demonstrating geospatial data ingestion, transformation,
-        validation, and visualization. Each project emphasizes reproducible workflows
-        and analysis-ready outputs.
+        validation, and visualization — with reproducible workflows and analysis-ready outputs.
       </p>
 
       <nav class="nav" aria-label="Site navigation">
-        <a href="/">Home</a>
         <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
         <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
         <a href="https://github.com/agmewkill">GitHub</a>
       </nav>
-
-      <!-- Back/Home CTA -->
-      <div class="cta" aria-label="Primary actions">
-        <a class="btn" href="/">← Back to Home</a>
-      </div>
     </header>
 
     <main class="grid">
 
       <!-- Encampments project -->
-      <section class="card" id="encampments">
+      <section class="card">
         <h2>Homeless Encampments & Social Determinants of Health (San Diego)</h2>
-        <div class="meta">
-          Tract-level analysis • Privacy-preserving aggregation • Census & ACS
-        </div>
+        <div class="meta">Tract-level analysis • Privacy-preserving aggregation • ACS + census geography</div>
 
         <ul>
-          <li>Integrated tract-aggregated encampment counts with ACS socioeconomic indicators</li>
-          <li>Cleaned and normalized demographic and economic variables</li>
-          <li>Joined datasets via census tract <code>GEOID</code> (no point-level data)</li>
-          <li>Produced analysis-ready tables for descriptives and statistical modeling</li>
+          <li>Encampment counts are aggregated to census tract for safety/anonymity (no point-level locations)</li>
+          <li>Merged tract outcomes with ACS indicators using a tract identifier join (e.g., <code>GEOID</code>)</li>
+          <li>Outputs an analysis-ready tract table for descriptives and modeling</li>
         </ul>
 
-        <!-- Tiny schema table -->
-        <div class="schema" role="region" aria-label="Encampments dataset schema (summary)">
-          <table>
-            <tr>
-              <th>Key</th>
-              <td><code>GEOID</code> (Census tract identifier)</td>
-            </tr>
-            <tr>
-              <th>Encampments</th>
-              <td><code>encampments_ct</code> (tract-aggregated count)</td>
-            </tr>
-            <tr>
-              <th>ACS examples</th>
-              <td>
-                <code>med_hh_income</code>, <code>pct_poverty</code>, <code>pct_uninsured</code>,
-                <code>pct_rent_burdened</code> (derived from ACS 5-year)
-              </td>
-            </tr>
-            <tr>
-              <th>Grain</th>
-              <td>Census tract (privacy-preserving; no point locations)</td>
-            </tr>
+        <!-- tiny schema table -->
+        <div class="schema-wrap" aria-label="Encampments dataset schema overview">
+          <table class="schema">
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Unit</th>
+                <th>Key field(s)</th>
+                <th>Example fields</th>
+                <th>How it’s used</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Encampments</strong> (aggregated)</td>
+                <td>Census tract</td>
+                <td><code>GEOID</code></td>
+                <td><code>encampment_count</code>, <code>obs_year</code> (if applicable)</td>
+                <td>Outcome/target at tract level</td>
+              </tr>
+              <tr>
+                <td><strong>ACS 5-year</strong></td>
+                <td>Census tract</td>
+                <td><code>GEOID</code></td>
+                <td><code>med_hh_income</code>, <code>poverty_rate</code>, <code>rent_burden</code>, <code>unemployment</code></td>
+                <td>Explanatory features (SDoH proxies)</td>
+              </tr>
+              <tr>
+                <td><strong>Tract geometry</strong> (TIGER/Line)</td>
+                <td>Census tract polygon</td>
+                <td><code>GEOID</code></td>
+                <td><code>geometry</code>, <code>ALAND</code></td>
+                <td>Mapping + spatial validation/visuals</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
-        <div class="links" style="margin-top: 10px;">
-          <a href="/projects/encampments/">Project page</a>
+        <div class="links">
+          <a href="/projects/encampments/">Project</a>
+          <a href="/projects/encampments/thesis-context.html">Thesis context</a>
           <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
           <a href="/projects/pitc-acs-correlation.html">Related: PITC × ACS</a>
         </div>
       </section>
 
       <!-- PITC × ACS project -->
-      <section class="card" id="pitc-acs">
+      <section class="card">
         <h2>PITC × ACS Correlations (p5.js)</h2>
-        <div class="meta">
-          Methods write-up + interactive demo • p5.js • CSV + GeoJSON
-        </div>
+        <div class="meta">Methods write-up + interactive demo • CSV + GeoJSON • client-side QA/communication</div>
 
         <ul>
-          <li>Part 1: written analysis describing sources, assumptions, and interpretation</li>
-          <li>Part 2: interactive tract map with year slider and Pearson r panel</li>
-          <li>Client-side ingestion of CSV + GeoJSON for exploratory QA and communication</li>
+          <li>Write-up: sources, assumptions, and interpretation</li>
+          <li>Demo: tract map + correlation panel (Pearson r) by year</li>
+          <li>Designed for exploratory validation and storytelling</li>
         </ul>
 
         <div class="links">
@@ -209,8 +213,7 @@
         <h2>Additional projects (in progress)</h2>
         <div class="meta">Prototypes, validation utilities, and exploratory workflows</div>
         <p style="margin: 0;">
-          Additional geospatial data engineering examples will be added as pipelines
-          and analyses are expanded.
+          More examples will be added as pipelines and analyses are expanded.
         </p>
       </section>
 
