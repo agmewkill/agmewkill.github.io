@@ -1,15 +1,60 @@
-# anniemewkill.GitHub.io
+# Annie Mewkill — Geospatial Data & GIS Portfolio
 
-Welcome to my website!
+I am a GIS master’s student at San Diego State University focused on geospatial data processing, spatial analysis, and reproducible workflows for urban, housing, and public health applications.  
+My work emphasizes cleaning, validating, and transforming Census and other geospatial datasets using Python and R to support downstream analysis and visualization.
 
-## Awesome Data Science
-From the “Awesome Data Science” page, I chose the from the Data Mining Algorithms. From there, I read about k-means clustering. This is a kind of vector quantization that groups data by into unlabeled points. This is based on the similarities between data points and differences to another cluster of data points. It can be used in a variety of real world situations. For banks and schools, they compare individuals and their grade/credit score. It is a useful tool for large datasets as it compresses large data sets into easily read and applicable figures.
+## Portfolio
+🌐 https://anniemewkill.github.io  
+Selected projects demonstrating geospatial data ingestion, preprocessing, analysis, and interactive visualization using Python, ArcGIS Pro, Leaflet, and p5.js.
 
-### Link:
-https://en.wikipedia.org/wiki/K-means_clustering
+## Featured Projects
 
-## Free Data Science Book
-I chose _R for Data Science_ by Hadley Wickham and Garrett Grolemund. Hadley Wickham is a New Zealand based statistician currently working at Posit. Garrett Grolemund is also at Posit as a statistician and R developer. The book is also collaborative, with almost 100 additional contributors listed. I have limited experience in R and am currently brushing up on my R skills. This book seems like the perfect way to introduce more statistics and programming theory into my vocabulary. The book is also free to use and the authors encourage donating to an endangered bird; the Kākāpo.
+- **Homeless Encampments & Social Determinants of Health (San Diego)**  
+  End-to-end workflow ingesting point data and Census ZCTA boundaries, performing spatial joins, and preparing analysis-ready datasets for mapping and exploration.  
+  *Tools:* Python (GeoPandas), ACS, ZCTAs, ArcGIS Pro, Leaflet  
+  → https://anniemewkill.github.io/projects/encampments-leaflet.html
 
-### Link: 
-https://r4ds.had.co.nz/
+- **ACS Census Tract–Level Data Processing Pipeline**  
+  Cleaning, normalizing, and aggregating ACS 5-year estimates to produce consistent tract-level datasets for spatial analysis and choropleth mapping.  
+  *Tools:* Python, Census ACS, TIGER/Line, ArcGIS Pro  
+  → https://anniemewkill.github.io/projects/acs-ct.html
+
+- **Exploratory Spatial Visualization (p5.js)**  
+  Interactive prototype exploring spatial patterns from preprocessed datasets, emphasizing rapid iteration and visual debugging of data issues.  
+  *Tools:* JavaScript, p5.js  
+  → https://anniemewkill.github.io/projects/p5-viz.html
+
+## Skills
+
+**Geospatial Data Processing**
+- Vector data processing (GeoJSON, Shapefiles)
+- Census geography (tracts, ZCTAs)
+- Spatial joins, aggregation, and validation
+- Preparing analysis-ready datasets
+
+**Programming & Tooling**
+
+**Python**
+- Data manipulation with pandas
+- Geospatial workflows using GeoPandas
+- Scripted data cleaning and transformation
+- Building repeatable preprocessing workflows
+
+**R**
+- Spatial analysis with sf
+- Data wrangling and visualization using tidyverse
+- Exploratory analysis of socioeconomic and public health indicators
+
+**Web & Visualization**
+- Interactive mapping with Leaflet
+- Prototyping and exploratory visualization with p5.js
+
+**Version Control & Environment**
+- Git and GitHub
+- Command-line workflows (macOS/Linux)
+
+
+
+## Contact
+- Email: agmewkill@gmail.com  
+- LinkedIn: www.linkedin.com/in/anna-mewkill-23335a20b
