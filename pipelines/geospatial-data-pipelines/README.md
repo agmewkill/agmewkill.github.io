@@ -19,3 +19,16 @@ including joins to boundary geometries and basic QA checks.
 ## Notes
 Large datasets are intentionally excluded. Only scripts, documentation, and
 small illustrative samples are included in version control.
+
+
+## How to run (local)
+From `pipelines/geospatial-data-pipelines/`:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+
+python scripts/ingest/download_acs.py
+python scripts/transform/clean_acs.py
+python scripts/validate/validate_geometries.py
