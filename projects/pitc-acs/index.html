@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PITC × ACS Correlations — Interactive</title>
+  <style>
+    body { margin: 0; background: #05060A; color: #F9FAFB; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    a { color: inherit; }
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; gap: 10px; align-items: center;
+      padding: 10px 12px; background: rgba(2,6,23,0.8);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+    }
+    .topbar a { text-decoration: none; font-weight: 600; opacity: 0.9; }
+    .spacer { height: 48px; }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html">← Projects</a>
+    <a href="../../index.html">Home</a>
+    <a href="../../pipelines/geospatial-data-pipelines/">Pipelines</a>
+  </div>
+  <div class="spacer"></div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>
