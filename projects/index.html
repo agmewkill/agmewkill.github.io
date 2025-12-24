@@ -3,113 +3,154 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Encampments & Social Determinants of Health — San Diego</title>
-  <meta name="description"
-        content="Tract-level analysis of homeless encampments and ACS socioeconomic indicators in San Diego County." />
+  <meta name="description" content="GIS and geospatial data engineering projects by Annie Mewkill." />
+  <title>Projects — Annie Mewkill</title>
 
   <style>
+    :root { color-scheme: light dark; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
     }
-    a { color: inherit; }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 18px; }
-    .nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+
+    header { display: grid; gap: 12px; }
+    h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
+    .lead { max-width: 70ch; opacity: 0.9; margin: 0; }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0 22px;
+      flex-wrap: wrap;
+    }
     .nav a {
       padding: 8px 12px;
       border: 1px solid rgba(127,127,127,0.35);
       border-radius: 12px;
-      text-decoration: none;
       font-weight: 600;
     }
-    h1 { margin: 0 0 6px; letter-spacing: -0.02em; }
-    .meta { opacity: 0.85; margin-bottom: 18px; }
+
+    .grid { display: grid; gap: 16px; }
+
     .card {
       border: 1px solid rgba(127,127,127,0.25);
       border-radius: 16px;
       padding: 16px;
       background: rgba(127,127,127,0.05);
-      margin-bottom: 16px;
     }
-    ul { padding-left: 18px; }
-    li { margin: 6px 0; }
-    .btnrow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-    .btn {
-      padding: 10px 14px;
-      border: 1px solid rgba(127,127,127,0.35);
-      border-radius: 12px;
-      text-decoration: none;
+
+    .card h2 { margin: 0 0 6px; font-size: 1.2rem; }
+
+    .meta {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    ul { margin: 8px 0 12px; padding-left: 18px; }
+    li { margin: 4px 0; }
+
+    .links a {
+      display: inline-block;
+      margin-right: 12px;
       font-weight: 600;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(127,127,127,0.2);
+      opacity: 0.85;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <nav class="nav">
-      <a href="/projects/">Projects</a>
-      <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
-      <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
-      <a href="https://github.com/agmewkill">GitHub</a>
-    </nav>
-
-    <h1>Homeless Encampments & Social Determinants of Health</h1>
-    <p class="meta">
-      San Diego County · Census tract level · Privacy-preserving analysis
-    </p>
-
-    <div class="card">
-      <h2>Project overview</h2>
-      <p>
-        This project analyzes relationships between homeless encampment counts and
-        socioeconomic conditions using American Community Survey (ACS) 5-year
-        estimates at the census tract level.
+    <header>
+      <h1>Projects</h1>
+      <p class="lead">
+        Selected projects demonstrating geospatial data ingestion, transformation,
+        validation, and visualization. Each project emphasizes reproducible workflows
+        and analysis-ready outputs.
       </p>
-      <p>
-        Encampment data are already aggregated by census tract to ensure privacy
-        and anonymity. No point-level locations are used.
-      </p>
-    </div>
 
-    <div class="card">
-      <h2>Data sources</h2>
-      <ul>
-        <li>Encampment counts aggregated by census tract (San Diego County)</li>
-        <li>ACS 5-year tract-level demographic and socioeconomic indicators</li>
-        <li>TIGER/Line census tract boundaries (for reference and QA)</li>
-      </ul>
-    </div>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="/">Home</a>
+        <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
+        <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+        <a href="https://github.com/agmewkill">GitHub</a>
+      </nav>
+    </header>
 
-    <div class="card">
-      <h2>Methods</h2>
-      <ul>
-        <li>ACS ingestion and variable construction using reproducible R scripts</li>
-        <li>Tract-level joins via GEOID (no spatial point joins)</li>
-        <li>Descriptive statistics and exploratory correlations</li>
-        <li>Regression-oriented modeling workflows for count data</li>
-      </ul>
-    </div>
+    <main class="grid">
 
-    <div class="card">
-      <h2>Pipeline structure</h2>
-      <ul>
-        <li><code>src/config/</code> — variable definitions and project settings</li>
-        <li><code>src/ingest/</code> — ACS data retrieval and reshaping</li>
-        <li><code>src/transform/</code> — tract joins and derived metrics</li>
-        <li><code>src/analysis/</code> — descriptives and modeling scripts</li>
-      </ul>
+      <!-- Encampments project -->
+      <section class="card">
+        <h2>Homeless Encampments & Social Determinants of Health (San Diego)</h2>
+        <div class="meta">
+          Tract-level analysis • Privacy-preserving aggregation • Census & ACS
+        </div>
 
-      <div class="btnrow">
-        <a class="btn"
-           href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">
-          View code
-        </a>
-      </div>
-    </div>
+        <ul>
+          <li>Integrated tract-aggregated encampment counts with ACS socioeconomic indicators</li>
+          <li>Cleaned and normalized demographic and economic variables</li>
+          <li>Joined datasets via census tract GEOID (no point-level data)</li>
+          <li>Produced analysis-ready tables for descriptive and statistical modeling</li>
+        </ul>
 
+        <div class="links">
+          <a href="/projects/encampments/">Project page</a>
+          <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
+          <a href="/projects/pitc-acs-correlation.html">Related: PITC × ACS</a>
+        </div>
+      </section>
+
+      <!-- PITC × ACS project -->
+      <section class="card">
+        <h2>PITC × ACS Correlations (p5.js)</h2>
+        <div class="meta">
+          One project, two parts: methods write-up + interactive demo • p5.js
+        </div>
+
+        <ul>
+          <li>Part 1: written analysis describing data sources, assumptions, and interpretation</li>
+          <li>Part 2: interactive tract map with year slider and Pearson r panel</li>
+          <li>Client-side ingestion of CSV + GeoJSON for exploratory QA and communication</li>
+        </ul>
+
+        <div class="links">
+          <a href="/projects/pitc-acs-correlation.html">Write-up</a>
+          <a href="/projects/pitc-acs/">Live demo</a>
+          <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">Code</a>
+          <a href="/projects/encampments/">Related: Encampments</a>
+        </div>
+      </section>
+
+      <!-- Placeholder -->
+      <section class="card">
+        <h2>Additional projects (in progress)</h2>
+        <div class="meta">Prototypes, validation utilities, and exploratory workflows</div>
+        <p style="margin: 0;">
+          Additional geospatial data engineering examples will be added as pipelines
+          and analyses are expanded.
+        </p>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Annie Mewkill
+    </footer>
   </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 
