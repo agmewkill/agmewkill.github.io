@@ -4,7 +4,7 @@ I am a GIS master’s student at San Diego State University focused on geospatia
 My work emphasizes cleaning, validating, and transforming Census and other geospatial datasets using Python and R to support downstream analysis and visualization.
 
 ## Portfolio
-🌐 https://anniemewkill.github.io  
+🌐 https://agmewkill.github.io  
 Selected projects demonstrating geospatial data ingestion, preprocessing, analysis, and interactive visualization using Python, ArcGIS Pro, Leaflet, and p5.js.
 
 ## Featured Projects
