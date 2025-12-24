@@ -1,14 +1,15 @@
-# ACS Tract-Level Dataset Schema
+# ACS Tract-Level Output Schema 
 
-This document describes the expected schema for processed ACS tract-level outputs.
+Expected fields for processed tract-level outputs.
 
-## Fields
-- `geoid` (string): Census tract GEOID
-- `median_income` (numeric): Median household income
-- `rent_burden_pct` (numeric): Percent of households spending >30% on rent
-- `total_population` (integer)
-- `geometry` (Polygon / MultiPolygon)
+## Required fields
+- geoid (string): Census tract GEOID (11 chars)
+- median_income (number)
+- rent_burden_pct (number)
+- total_population (integer)
+- geometry (Polygon/MultiPolygon) when spatial output is produced
 
-## Notes
-- All numeric fields should be standardized to numeric types
-- Missing values should be explicitly set to null
+## Validation notes
+- All numeric columns should be numeric types (no commas or symbols)
+- Missing values should be explicit nulls
+- GEOIDs should be zero-padded strings
