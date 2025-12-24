@@ -1,1 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homeless Encampments & Social Determinants of Health — San Diego | Annie Mewkill</title>
+  <meta name="description" content="Geospatial analysis examining relationships between homeless encampments and socioeconomic indicators in San Diego using Census and ACS data." />
+
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    h1 { margin: 0 0 8px; letter-spacing: -0.02em; }
+    .meta { opacity: 0.85; margin-bottom: 16px; }
+
+    .card {
+      border: 1px solid rgba(127,127,127,0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(127,127,127,0.05);
+      margin: 14px 0;
+    }
+
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+
+    .btnrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .img {
+      margin-top: 10px;
+      border-radius: 12px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <nav class="nav" aria-label="Site navigation">
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
+      <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+    </nav>
+
+    <h1>Homeless Encampments & Social Determinants of Health (San Diego)</h1>
+    <p class="meta">
+      End-to-end geospatial analysis examining relationships between homeless encampment
+      locations and neighborhood-level socioeconomic indicators.
+      <br />
+      <strong>Tools:</strong> Python, GeoPandas, Census, ACS, TIGER/Line
+    </p>
+
+    <div class="card">
+      <h2>Problem statement</h2>
+      <p>
+        How do neighborhood-level social and economic conditions relate to the spatial
+        distribution of homeless encampments in San Diego?
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Data sources</h2>
+      <ul>
+        <li>American Community Survey (5-year estimates)</li>
+        <li>Decennial Census / TIGER/Line boundary files</li>
+        <li>Homeless encampment point data (San Diego)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Geospatial workflow</h2>
+      <ul>
+        <li>Ingested ACS tabular data and TIGER/Line boundary geometries</li>
+        <li>Cleaned and normalized socioeconomic indicators</li>
+        <li>Performed spatial joins between encampment points and ZCTAs</li>
+        <li>Validated outputs (row counts, null checks, geometry consistency)</li>
+        <li>Prepared analysis-ready datasets for downstream use</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Outputs</h2>
+      <p>
+        Analysis-ready datasets and static map outputs used to examine spatial patterns
+        and inform subsequent exploratory and statistical analysis.
+      </p>
+
+      <!-- Optional static outputs -->
+      <!-- <img src="assets/encampments_vs_income.png" alt="Encampments vs income" class="img" /> -->
+    </div>
+
+    <div class="card">
+      <h2>Pipeline alignment</h2>
+      <p>
+        This project represents an upstream geospatial ETL workflow that feeds
+        downstream analysis and visualization projects (e.g., PITC × ACS correlations).
+      </p>
+      <div class="btnrow">
+        <a class="btn" href="/pipelines/geospatial-data-pipelines/">View pipeline code</a>
+      </div>
+    </div>
+
+    <div class="btnrow">
+      <a class="btn" href="/projects/">← Back to Projects</a>
+    </div>
+
+  </div>
+</body>
+</html>
 
