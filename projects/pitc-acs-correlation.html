@@ -4,145 +4,178 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PITC × ACS Correlations — San Diego (2013–2025) | Annie Mewkill</title>
-  <meta name="description" content="Methods + context for an interactive geospatial QA and correlation visualization comparing PIT count totals to ACS tract-level variables across multiple years." />
+  <meta name="description" content="Interactive geospatial QA + correlation visualization comparing PIT count totals to ACS tract-level variables across multiple years." />
 
   <style>
     :root { color-scheme: light dark; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
 
-    /* shared topbar */
-    .topbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      font-weight: 600;
+      background: rgba(127,127,127,0.06);
+    }
+    .nav a:hover { background: rgba(127,127,127,0.12); }
+
+    .breadcrumb {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+
+    h1 { margin: 0 0 8px; letter-spacing: -0.02em; }
+    .meta { opacity: 0.85; margin: 0 0 16px; }
+
+    .btnrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
     .btn {
       padding: 10px 14px;
       border: 1px solid rgba(127,127,127,0.35);
-      border-radius: 14px;
-      font-weight: 800;
-      background: rgba(127,127,127,0.10);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      border-radius: 12px;
+      font-weight: 650;
+      background: rgba(127,127,127,0.06);
     }
-    .btn:hover { background: rgba(127,127,127,0.18); }
-    .btn.primary { border-color: rgba(127,127,127,0.55); background: rgba(127,127,127,0.14); }
+    .btn:hover { background: rgba(127,127,127,0.12); }
 
-    header { display: grid; gap: 10px; }
-    h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
-    .lead { margin: 0; max-width: 85ch; opacity: 0.9; }
-    .crumb { margin: 4px 0 0; font-size: 0.95rem; opacity: 0.85; }
-
-    .grid { display: grid; gap: 16px; margin-top: 16px; }
     .card {
       border: 1px solid rgba(127,127,127,0.25);
       border-radius: 16px;
       padding: 16px;
-      background: rgba(127,127,127,0.06);
+      background: rgba(127,127,127,0.05);
+      margin: 14px 0;
     }
-    .card h2 { margin: 0 0 6px; font-size: 1.2rem; }
-    .meta { margin: 0 0 10px; opacity: 0.85; font-size: 0.95rem; }
 
-    ul { margin: 10px 0 0; padding-left: 18px; }
+    ul { margin: 8px 0 0; padding-left: 18px; }
     li { margin: 6px 0; }
 
-    .links { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .chip {
-      padding: 8px 12px;
-      border: 1px solid rgba(127,127,127,0.35);
-      border-radius: 12px;
-      font-weight: 850;
-      background: rgba(127,127,127,0.06);
-      display: inline-block;
-    }
-    .chip:hover { background: rgba(127,127,127,0.12); }
-
-    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(127,127,127,0.2); opacity: 0.85; font-size: 0.95rem; }
-    code { font-size: 0.95em; }
+    /* figures */
+    .figure img { max-width: 100%; height: auto; border-radius: 12px; display: block; }
+    .figure .cap { margin-top: 10px; font-size: 0.95rem; opacity: 0.85; }
   </style>
 </head>
 
 <body>
   <div class="wrap">
 
-    <nav class="topbar" aria-label="Site navigation">
-      <a class="btn" href="/">← Home</a>
-      <a class="btn primary" href="/projects/">Projects</a>
-      <a class="btn" href="/pipelines/">Pipelines</a>
-      <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
-      <a class="btn" href="https://github.com/agmewkill">GitHub</a>
-      <a class="btn" href="mailto:agmewkill@gmail.com">Email</a>
+    <!-- Global navigation -->
+    <nav class="nav" aria-label="Site navigation">
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
+      <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
     </nav>
 
-    <header>
-      <h1>PITC × ACS Correlations</h1>
-      <p class="lead">
-        Methods + assumptions for an interactive tract-level QA and correlation tool comparing
-        PIT count totals to ACS indicators across multiple years (San Diego County, 2013–2025).
-        The interactive map + correlation panel are the second half of this same project.
+    <!-- Breadcrumb / context -->
+    <div class="breadcrumb">
+      <a href="/projects/">Projects</a> → <strong>PITC × ACS Correlations</strong>
+    </div>
+
+    <h1>PITC × ACS Correlations (San Diego County, 2013–2025)</h1>
+    <p class="meta">
+      This page documents the methods, assumptions, and analytical context for the
+      <strong>PITC × ACS Correlations</strong> project. The interactive map and correlation
+      panel are the second half of this same project.
+    </p>
+
+    <div class="btnrow">
+      <a class="btn" href="/projects/pitc-acs/">Launch interactive</a>
+      <a class="btn" href="/projects/encampments/thesis-context.html">Thesis context</a>
+      <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">View code</a>
+    </div>
+
+    <div class="card">
+      <h2>What this project demonstrates</h2>
+      <ul>
+        <li>Multi-year data ingestion using year-configured CSV inputs and shared tract geometry</li>
+        <li>Schema normalization for real-world ACS column inconsistencies</li>
+        <li>Geospatial joins between tract-level PIT counts and demographic indicators</li>
+        <li>Inline QA and interpretability features (hover details, legends, correlation summaries)</li>
+        <li>Statistical computation of Spearman correlation (ρ) with safeguards for missing data</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Data & assumptions</h2>
+      <ul>
+        <li>Inputs include PIT count totals by census tract and ACS 5-year tract-level indicators</li>
+        <li>Tract geometry is simplified for performance and interactive use</li>
+        <li>Some PIT years reuse the most recent available ACS vintage</li>
+        <li>Correlation values describe association only and do not imply causation</li>
+      </ul>
+    </div>
+
+    <div class="card" id="results-figures">
+      <h2>Correlation results</h2>
+      <p class="meta">
+        Spearman rank correlations between tract-level PITC counts and selected ACS indicators,
+        evaluated across multiple years to assess stability and directionality.
       </p>
-      <div class="crumb">
-        <a href="/projects/">Projects</a> → <strong>PITC × ACS Correlations</strong>
-      </div>
 
-      <div class="links" aria-label="Project links">
-        <a class="chip" href="/projects/pitc-acs/">Launch interactive</a>
-        <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">View code</a>
-        <a class="chip" href="/pipelines/geospatial-data-pipelines/">Pipeline patterns</a>
-      </div>
-    </header>
-
-    <main class="grid">
-
-      <section class="card">
-        <h2>What this project demonstrates</h2>
-        <p class="meta">Geospatial ETL → visualization QA layer</p>
-        <ul>
-          <li>Multi-year ingestion using year-configured CSV inputs + shared tract geometry</li>
-          <li>Schema normalization for real-world ACS column inconsistencies</li>
-          <li>Tract-level joins between PIT counts and demographic/socioeconomic indicators</li>
-          <li>Inline QA + interpretability (hover details, legends, correlation summaries)</li>
-          <li>Pearson correlation (r) computation with safeguards for missing data</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>Data & assumptions</h2>
-        <ul>
-          <li>Inputs include PIT count totals by census tract and ACS 5-year tract indicators</li>
-          <li>Tract geometry is simplified for performance and interactive use</li>
-          <li>Some PIT years reuse the most recent available ACS vintage</li>
-          <li>Correlation describes linear association only and does not imply causation</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>Pipeline alignment</h2>
-        <p class="meta">How this fits into ingest → validate → publish</p>
-        <p style="margin: 0;">
-          This page is the documentation layer for the downstream visualization/QA step of a typical workflow:
-          <strong>ingest → transform → validate → output</strong>. The reusable pipeline structure referenced here is:
-          <a href="/pipelines/geospatial-data-pipelines/"><strong>pipelines/geospatial-data-pipelines</strong></a>.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Related projects</h2>
-        <div class="links">
-          <a class="chip" href="/projects/encampments/">Encampments × ACS</a>
-          <a class="chip" href="/projects/">All projects</a>
+      <div class="figure" style="margin-top:12px;">
+        <img
+          src="/projects/pitc-acs/assets/pitc_cross_year_trends_all_vars.png"
+          alt="PITC-ACS Spearman correlations over time for all variables"
+        />
+        <div class="cap">
+          <strong>Figure 1.</strong> Spearman correlations between PITC counts and all ACS variables across years.
+          Lines illustrate the direction and relative stability of associations over time.
         </div>
-      </section>
+      </div>
 
-    </main>
+      <div class="figure" style="margin-top:16px;">
+        <img
+          src="/projects/pitc-acs/assets/pitc_cross_year_heatmap_top_vars.png"
+          alt="Heatmap of top PITC-ACS Spearman correlations by year"
+        />
+        <div class="cap">
+          <strong>Figure 2.</strong> Heatmap of selected ACS indicators with the strongest Spearman correlations
+          to PITC counts. Warmer colors indicate stronger positive association; cooler colors indicate negative association.
+        </div>
+      </div>
 
-    <footer>
-      © <span id="year"></span> Annie Mewkill
-    </footer>
+      <p class="meta" style="margin-top:12px;">
+        <strong>Interpretation (high-level):</strong>
+        Across years, housing and poverty-adjacent indicators (e.g., renter prevalence, cash assistance, poverty measures)
+        show more consistent associations with PITC patterns than many purely demographic indicators, though the strength
+        and direction of relationships varies by year.
+        For thesis framing and privacy-safe interpretation, see
+        <a href="/projects/encampments/thesis-context.html">Encampments — Thesis context</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Pipeline alignment</h2>
+      <p>
+        This project represents the downstream visualization and QA layer of a typical
+        geospatial ETL workflow:
+        <strong>ingest → transform → validate → output</strong>.
+        Related pipeline structure and scripts can be found in
+        <a href="/pipelines/geospatial-data-pipelines/">pipelines/geospatial-data-pipelines</a>.
+      </p>
+    </div>
+
+    <div class="btnrow">
+      <a class="btn" href="/projects/">← Back to Projects</a>
+    </div>
 
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
