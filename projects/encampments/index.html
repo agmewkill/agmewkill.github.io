@@ -3,228 +3,248 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Encampments & Social Determinants of Health (San Diego)</title>
+  <title>Encampments & Social Determinants of Health (San Diego) | Annie Mewkill</title>
   <meta name="description" content="Tract-level workflow linking aggregated encampment counts with ACS indicators for San Diego County, emphasizing reproducibility and privacy." />
+
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #111827;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --card: #f9fafb;
-      --link: #2563eb;
-      --code: #0b1020;
-    }
+    :root { color-scheme: light dark; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--fg);
-      background: var(--bg);
       line-height: 1.55;
     }
-    header, main, footer {
-      max-width: 920px;
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 28px 18px;
     }
-    header {
-      padding-top: 40px;
-      padding-bottom: 12px;
+
+    /* standard site topbar buttons */
+    .topbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
     }
-    h1 {
-      margin: 0 0 8px 0;
-      font-size: 1.9rem;
-      letter-spacing: -0.02em;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 14px;
+      font-weight: 800;
+      background: rgba(127,127,127,0.10);
     }
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 75ch;
+    .btn:hover { background: rgba(127,127,127,0.18); }
+    .btn.primary {
+      border-color: rgba(127,127,127,0.55);
+      background: rgba(127,127,127,0.14);
     }
+
+    header { display: grid; gap: 12px; }
+    h1 { margin: 6px 0 0; font-size: 2rem; letter-spacing: -0.02em; }
+    .subtitle { margin: 0; opacity: 0.9; max-width: 80ch; }
+
     .badges {
-      margin-top: 14px;
+      margin-top: 6px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
     .badge {
       display: inline-block;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--fg);
+      border: 1px solid rgba(127,127,127,0.25);
+      background: rgba(127,127,127,0.06);
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0.95;
     }
-    nav {
-      margin-top: 22px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
+
+    /* section nav */
+    .sectionnav {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
       border-radius: 12px;
-      background: var(--card);
+      font-weight: 750;
+      background: rgba(127,127,127,0.06);
     }
-    nav a {
-      margin-right: 14px;
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    nav a:hover { text-decoration: underline; }
-    section {
-      margin-top: 28px;
-      padding-top: 8px;
-    }
-    h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.25rem;
-      letter-spacing: -0.01em;
-    }
-    p { margin: 0 0 12px 0; }
-    ul { margin: 0 0 12px 20px; }
-    .callout {
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin: 12px 0 0 0;
-    }
-    .callout strong { display: inline-block; margin-bottom: 6px; }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    @media (min-width: 800px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-    }
+    .chip:hover { background: rgba(127,127,127,0.12); }
+
+    main { margin-top: 12px; }
+
+    .grid { display: grid; gap: 16px; }
     .card {
-      border: 1px solid var(--border);
-      background: #fff;
-      border-radius: 14px;
-      padding: 14px 16px;
+      border: 1px solid rgba(127,127,127,0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(127,127,127,0.05);
     }
+    .card h2 { margin: 0 0 10px; font-size: 1.2rem; letter-spacing: -0.01em; }
+    .card p { margin: 0 0 10px; opacity: 0.92; }
+
+    ul { margin: 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+
+    .twocol {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 860px) {
+      .twocol { grid-template-columns: 1fr 1fr; }
+    }
+
     code, pre {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 0.92rem;
     }
     pre {
-      background: var(--code);
-      color: #e5e7eb;
+      margin: 10px 0 0;
       padding: 14px 16px;
       border-radius: 14px;
+      border: 1px solid rgba(127,127,127,0.25);
+      background: rgba(127,127,127,0.08);
       overflow-x: auto;
-      margin: 10px 0 0 0;
     }
-    a { color: var(--link); }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
     footer {
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 36px;
-      padding-top: 18px;
-      padding-bottom: 40px;
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(127,127,127,0.2);
+      opacity: 0.85;
       font-size: 0.95rem;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Encampments & Social Determinants of Health (San Diego)</h1>
-    <p class="subtitle">
-      A tract-level data engineering and analysis workflow linking aggregated homeless encampment counts
-      with American Community Survey (ACS) socioeconomic indicators for San Diego County.
-      Built to be reproducible and privacy-safe.
-    </p>
+  <div class="wrap">
 
-    <div class="badges" aria-label="Project tags">
-      <span class="badge">San Diego County</span>
-      <span class="badge">Census Tracts</span>
-      <span class="badge">ACS 5-year</span>
-      <span class="badge">Privacy-first</span>
-      <span class="badge">R / tidycensus</span>
-    </div>
-
-    <nav aria-label="Page navigation">
-      <a href="#overview">Overview</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#how-to-run">How to run</a>
-      <a href="#outputs">Outputs</a>
-      <a href="#tools">Tools</a>
+    <!-- STANDARD NAV -->
+    <nav class="topbar" aria-label="Site navigation">
+      <a class="btn" href="/">← Home</a>
+      <a class="btn" href="/projects/">Projects</a>
+      <a class="btn" href="/pipelines/">Pipelines</a>
+      <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+      <a class="btn" href="https://github.com/agmewkill">GitHub</a>
     </nav>
-  </header>
 
-  <main>
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>
-        This project demonstrates how to create an analysis-ready, tract-level dataset that pairs
-        <strong>pre-aggregated encampment counts</strong> with tract-level ACS indicators. The goal is to support
-        descriptive analysis and statistical modeling of relationships between encampments and social determinants
-        of health (SDOH), while maintaining responsible handling of sensitive information.
+    <header>
+      <h1>Encampments & Social Determinants of Health (San Diego)</h1>
+      <p class="subtitle">
+        A tract-level, privacy-preserving data workflow linking <strong>pre-aggregated encampment counts</strong>
+        with American Community Survey (ACS) socioeconomic indicators for San Diego County — built as a reproducible
+        pipeline that produces analysis-ready tables for descriptives and modeling.
       </p>
 
-      <div class="callout">
-        <strong>Scope</strong>
-        <ul>
-          <li><strong>Geography:</strong> Census tracts (San Diego County)</li>
-          <li><strong>Unit of analysis:</strong> tract-level aggregated counts + tract-level ACS indicators</li>
-          <li><strong>Methods:</strong> reproducible ingestion, variable construction, joins, descriptives, modeling</li>
-        </ul>
+      <div class="badges" aria-label="Project tags">
+        <span class="badge">San Diego County</span>
+        <span class="badge">Census Tracts</span>
+        <span class="badge">ACS 5-year</span>
+        <span class="badge">Privacy-first</span>
+        <span class="badge">Join via GEOID</span>
       </div>
-    </section>
 
-    <section id="privacy">
-      <h2>Privacy and data handling</h2>
-      <p>
-        Encampment data are already aggregated by census tract to protect privacy and anonymity. This project does
-        not use point locations or individual-level records.
-      </p>
-      <div class="callout">
-        <strong>Key constraints</strong>
+      <!-- project-level cross links (recruiter-friendly) -->
+      <div class="links" aria-label="Project links">
+        <a class="chip" href="/projects/encampments/thesis-context.html">Thesis context</a>
+        <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
+        <a class="chip" href="/pipelines/geospatial-data-pipelines/">Related pipeline patterns</a>
+      </div>
+
+      <!-- section anchors -->
+      <nav class="sectionnav" aria-label="On-page navigation">
+        <a class="chip" href="#overview">Overview</a>
+        <a class="chip" href="#privacy">Privacy</a>
+        <a class="chip" href="#workflow">Workflow</a>
+        <a class="chip" href="#how-to-run">How to run</a>
+        <a class="chip" href="#outputs">Outputs</a>
+        <a class="chip" href="#tools">Tools</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+
+      <section id="overview" class="card">
+        <h2>Overview</h2>
+        <p>
+          This project creates an analysis-ready, tract-level dataset that pairs
+          <strong>tract-aggregated encampment counts</strong> with tract-level ACS indicators. The intent is to support
+          descriptive analysis and modeling of relationships between encampments and social determinants of health (SDoH),
+          while maintaining responsible handling of sensitive information.
+        </p>
+        <ul>
+          <li><strong>Geography:</strong> San Diego County census tracts</li>
+          <li><strong>Unit of analysis:</strong> tract-level counts + tract-level ACS indicators</li>
+          <li><strong>Join key:</strong> <code>GEOID</code> (stable tract identifier)</li>
+        </ul>
+      </section>
+
+      <section id="privacy" class="card">
+        <h2>Privacy and data handling</h2>
+        <p>
+          Encampment data are already aggregated by census tract to protect anonymity. This project does not use
+          point locations or individual-level records.
+        </p>
         <ul>
           <li>No point geometries / no individual locations</li>
           <li>No personally identifiable information (PII)</li>
           <li>All analysis occurs at an anonymized geographic unit (tract)</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section id="workflow">
-      <h2>Workflow</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 style="margin:0 0 8px 0;">1) Ingest</h3>
-          <ul>
-            <li>Pull ACS 5-year tract estimates using <code>tidycensus</code></li>
-            <li>Normalize variable names and schemas</li>
-            <li>Aggregate age/demographic bands where needed</li>
-          </ul>
-        </div>
+      <section id="workflow" class="card">
+        <h2>Workflow</h2>
 
-        <div class="card">
-          <h3 style="margin:0 0 8px 0;">2) Transform</h3>
-          <ul>
-            <li>Standardize tract identifiers (GEOID)</li>
-            <li>Join ACS indicators with pre-aggregated encampment counts</li>
-            <li>Check missingness and coverage</li>
-          </ul>
-        </div>
+        <div class="twocol">
+          <div class="card" style="margin:0;">
+            <h3 style="margin:0 0 8px;">1) Ingest</h3>
+            <ul>
+              <li>Pull ACS 5-year tract estimates (demographic, housing, economic)</li>
+              <li>Normalize variable names and schemas</li>
+              <li>Construct derived indicators where needed</li>
+            </ul>
+          </div>
 
-        <div class="card">
-          <h3 style="margin:0 0 8px 0;">3) Analysis</h3>
-          <ul>
-            <li>Tract-level descriptive summaries</li>
-            <li>Explore correlations and relationships</li>
-            <li>Regression modeling appropriate for aggregated count data</li>
-          </ul>
-        </div>
+          <div class="card" style="margin:0;">
+            <h3 style="margin:0 0 8px;">2) Transform</h3>
+            <ul>
+              <li>Standardize tract identifiers (<code>GEOID</code>)</li>
+              <li>Join ACS indicators to tract-aggregated encampment counts</li>
+              <li>Run missingness + coverage checks</li>
+            </ul>
+          </div>
 
-        <div class="card">
-          <h3 style="margin:0 0 8px 0;">Project structure</h3>
-          <pre><code>encampments/
+          <div class="card" style="margin:0;">
+            <h3 style="margin:0 0 8px;">3) Analysis</h3>
+            <ul>
+              <li>Descriptives (distributions, scaling, outliers)</li>
+              <li>Correlation / exploratory relationships</li>
+              <li>Modeling appropriate for aggregated counts</li>
+            </ul>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h3 style="margin:0 0 8px;">Repository structure</h3>
+            <pre><code>encampments/
 ├── src/
 │   ├── config/
 │   ├── ingest/
@@ -232,49 +252,60 @@
 │   └── analysis/
 ├── data/
 └── outputs/</code></pre>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="how-to-run">
-      <h2>How to run</h2>
-      <p>From the repository root, run the scripts in order (ingest → transform → analysis).</p>
-      <pre><code># Example (adjust script names to match your repo)
+      <section id="how-to-run" class="card">
+        <h2>How to run</h2>
+        <p>From the repository root, run scripts in order (ingest → transform → analysis).</p>
+        <pre><code># Example (adjust names to match your repo)
 Rscript src/ingest/01_ingest_acs.R
 Rscript src/transform/02_join_encampments_acs.R
 Rscript src/analysis/03_descriptives_models.R</code></pre>
-      <p style="color:var(--muted); margin-top:10px;">
-        Note: If your repo uses an R project file, renv, or Make targets, swap this section to match that workflow.
+        <p style="opacity:0.85; margin:10px 0 0;">
+          If you use <code>renv</code> / Make targets / an R project file, update this section to match.
+        </p>
+      </section>
+
+      <section id="outputs" class="card">
+        <h2>Outputs</h2>
+        <ul>
+          <li>Tract-level joined dataset (analysis-ready)</li>
+          <li>Summary tables / descriptives</li>
+          <li>Model outputs (fit summaries + diagnostics)</li>
+        </ul>
+        <p style="opacity:0.85;">
+          Outputs are intentionally kept small and reviewable for portfolio purposes.
+        </p>
+      </section>
+
+      <section id="tools" class="card">
+        <h2>Tools</h2>
+        <ul>
+          <li>R</li>
+          <li><code>tidycensus</code>, <code>dplyr</code>, <code>tidyr</code></li>
+          <li><code>sf</code> (only when tract geometry is needed)</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>
+        <strong>Note:</strong> This project uses tract-level aggregation to support responsible analysis of a sensitive topic.
+        The emphasis is on reproducible workflows and privacy-aware design.
       </p>
-    </section>
-
-    <section id="outputs">
-      <h2>Outputs</h2>
-      <ul>
-        <li>Tract-level joined dataset (analysis-ready)</li>
-        <li>Summary tables / descriptives</li>
-        <li>Model outputs (coefficients, diagnostics, fit summaries)</li>
-      </ul>
-      <p style="color:var(--muted);">
-        Outputs are intentionally kept small and reviewable for portfolio purposes.
+      <p style="margin:10px 0 0;">
+        © <span id="year"></span> Annie Mewkill
       </p>
-    </section>
+    </footer>
 
-    <section id="tools">
-      <h2>Tools</h2>
-      <ul>
-        <li>R</li>
-        <li><code>tidycensus</code>, <code>dplyr</code>, <code>tidyr</code></li>
-        <li><code>sf</code> (only when tract geometry is needed)</li>
-      </ul>
-    </section>
-  </main>
+  </div>
 
-  <footer>
-    <p>
-      <strong>Note:</strong> This project uses tract-level aggregation to support responsible analysis of a sensitive topic.
-      If you are viewing this as part of a portfolio, the emphasis is on reproducible workflows and privacy-aware design.
-    </p>
-  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
