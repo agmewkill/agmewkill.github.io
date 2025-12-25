@@ -3,43 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Projects by Annie Mewkill — geospatial data processing, privacy-preserving tract-level analysis, and interactive mapping demos." />
-  <title>Projects | Annie Mewkill</title>
+  <meta name="description" content="GIS and geospatial data engineering projects by Annie Mewkill." />
+  <title>Projects — Annie Mewkill</title>
 
   <style>
     :root { color-scheme: light dark; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.55;
+      line-height: 1.5;
     }
     a { color: inherit; text-decoration: none; }
-
     .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
 
-    /* top navigation buttons */
-    .topbar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .btn {
+    header { display: grid; gap: 12px; }
+
+    .home-btn {
+      display: inline-block;
+      width: fit-content;
       padding: 10px 14px;
       border: 1px solid rgba(127,127,127,0.35);
       border-radius: 14px;
       font-weight: 800;
-      background: rgba(127,127,127,0.10);
-      display: inline-block;
-      width: fit-content;
+      background: rgba(127,127,127,0.12);
     }
-    .btn:hover { background: rgba(127,127,127,0.18); }
+    .home-btn:hover { background: rgba(127,127,127,0.2); }
 
-    header { display: grid; gap: 10px; }
-    h1 { margin: 6px 0 0; font-size: 2rem; letter-spacing: -0.02em; }
-    .lead { max-width: 80ch; opacity: 0.9; margin: 0 0 6px; }
+    h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
+    .lead { max-width: 70ch; opacity: 0.9; margin: 0; }
 
-    .grid { display: grid; gap: 16px; margin-top: 14px; }
+    .nav {
+      display: flex;
+      gap: 10px;
+      margin: 8px 0 10px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      font-weight: 650;
+      background: rgba(127,127,127,0.06);
+    }
+    .nav a:hover { background: rgba(127,127,127,0.12); }
+
+    .grid { display: grid; gap: 16px; margin-top: 10px; }
 
     .card {
       border: 1px solid rgba(127,127,127,0.25);
@@ -47,22 +55,47 @@
       padding: 16px;
       background: rgba(127,127,127,0.05);
     }
+
     .card h2 { margin: 0 0 6px; font-size: 1.2rem; }
-    .meta { font-size: 0.95rem; opacity: 0.85; margin: 0 0 10px; }
 
-    ul { margin: 10px 0 0; padding-left: 18px; }
-    li { margin: 6px 0; }
-
-    .links {
-      margin-top: 12px;
+    .meta {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-bottom: 10px;
     }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(127,127,127,0.35);
+      background: rgba(127,127,127,0.08);
+      font-weight: 800;
+      font-size: 0.85rem;
+      opacity: 1;
+    }
+
+    ul { margin: 8px 0 12px; padding-left: 18px; }
+    li { margin: 4px 0; }
+
+    .links a {
+      display: inline-block;
+      margin: 6px 12px 0 0;
+      font-weight: 750;
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      background: rgba(127,127,127,0.06);
+    }
+    .links a:hover { background: rgba(127,127,127,0.12); }
 
     /* tiny schema table */
     .schema-wrap {
-      margin-top: 12px;
+      margin-top: 10px;
       overflow-x: auto;
       border-radius: 14px;
       border: 1px solid rgba(127,127,127,0.25);
@@ -80,8 +113,8 @@
       border-bottom: 1px solid rgba(127,127,127,0.18);
       vertical-align: top;
     }
-    .schema th { font-weight: 850; opacity: 0.95; }
-    code { font-size: 0.95em; }
+    .schema th { font-weight: 800; opacity: 0.95; }
+    .schema td code { font-size: 0.92em; }
 
     footer {
       margin-top: 28px;
@@ -95,124 +128,121 @@
 
 <body>
   <div class="wrap">
-
-    <!-- NAVIGATION -->
-    <div class="topbar" aria-label="Site navigation">
-      <a class="btn" href="/">← Home</a>
-      <a class="btn" href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
-      <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
-      <a class="btn" href="https://github.com/agmewkill">GitHub</a>
-    </div>
-
-    <!-- HEADER -->
     <header>
+      <a href="/" class="home-btn" aria-label="Back to home page">← Home</a>
+
       <h1>Projects</h1>
       <p class="lead">
-        Selected work demonstrating tract-level, privacy-preserving analysis; reproducible ACS workflows; and
-        interactive tools for communicating spatial patterns.
+        Selected projects demonstrating geospatial data ingestion, transformation,
+        validation, and visualization — with reproducible workflows and analysis-ready outputs.
       </p>
+
+      <nav class="nav" aria-label="Site navigation">
+        <a href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
+        <a href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+        <a href="https://github.com/agmewkill">GitHub</a>
+      </nav>
     </header>
 
     <main class="grid">
 
-      <!-- ENCAMPMENTS -->
-      <section class="card" id="encampments">
-        <h2>Encampments × ACS (San Diego)</h2>
-        <div class="meta">Tract-level analysis • privacy-preserving aggregation • join via <code>GEOID</code></div>
+      <!-- Encampments project -->
+      <section class="card">
+        <h2>Homeless Encampments & Social Determinants of Health (San Diego)</h2>
+        <div class="meta">
+          <span>Tract-level analysis • Privacy-preserving aggregation • ACS + census geography</span>
+        </div>
 
         <ul>
-          <li><strong>Privacy-first:</strong> encampments are already aggregated by census tract (no point locations)</li>
-          <li>Merges tract outcomes with ACS 5-year indicators (demographic, housing, economic)</li>
-          <li>Produces a modeling-ready tract table + descriptives inputs</li>
+          <li>Encampment counts are aggregated to census tract for safety/anonymity (no point-level locations)</li>
+          <li>Merged outcomes with ACS indicators via tract identifier join (<code>GEOID</code>)</li>
+          <li>Produced analysis-ready tables for descriptives and statistical modeling</li>
         </ul>
 
-        <!-- tiny schema table -->
-        <div class="schema-wrap" aria-label="Encampments dataset schema overview">
+        <div class="links">
+          <a href="/projects/encampments/">Project</a>
+          <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
+          <a href="/projects/pitc-acs-correlation.html">Related: PITC × ACS</a>
+        </div>
+      </section>
+
+      <!-- Bathrooms project -->
+      <section class="card">
+        <h2>San Diego Public Bathroom Audit</h2>
+        <div class="meta">
+          <span class="badge">In progress (v0.x)</span>
+          <span>Open map + validation pipeline • Policy-ready dataset • User submissions</span>
+        </div>
+
+        <ul>
+          <li>Seeded from an ArcGIS Online prototype; migrating to an open-source ingestion + QA pipeline</li>
+          <li>Append-only submissions → validation/dedupe → canonical dataset (GeoJSON/CSV/Parquet)</li>
+          <li>Designed to serve both engineering workflows and policy reporting</li>
+        </ul>
+
+        <div class="schema-wrap" aria-label="Bathrooms dataset schema overview">
           <table class="schema">
             <thead>
               <tr>
-                <th>Dataset</th>
-                <th>Unit</th>
+                <th>Layer</th>
+                <th>Record type</th>
                 <th>Key field(s)</th>
                 <th>Example fields</th>
-                <th>How it’s used</th>
+                <th>Guarantee</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Encampments</strong> (aggregated)</td>
-                <td>Census tract</td>
-                <td><code>GEOID</code></td>
-                <td><code>encampment_count</code>, <code>obs_year</code> (if applicable)</td>
-                <td>Outcome/target at tract level</td>
+                <td><strong>Submissions</strong> (raw)</td>
+                <td>Append-only log</td>
+                <td><code>submission_id</code></td>
+                <td><code>submitted_at</code>, <code>lat</code>, <code>lon</code>, <code>open_to_public</code></td>
+                <td>Unverified input</td>
               </tr>
               <tr>
-                <td><strong>ACS 5-year</strong></td>
-                <td>Census tract</td>
-                <td><code>GEOID</code></td>
-                <td><code>poverty_rate</code>, <code>med_hh_income</code>, <code>rent_burden</code>, <code>unemployment</code></td>
-                <td>Explanatory features (SDoH proxies)</td>
-              </tr>
-              <tr>
-                <td><strong>Tract geometry</strong> (TIGER/Line)</td>
-                <td>Tract polygon</td>
-                <td><code>GEOID</code></td>
-                <td><code>geometry</code>, <code>ALAND</code></td>
-                <td>Mapping + visuals + spatial validation</td>
+                <td><strong>Canonical</strong> (validated)</td>
+                <td>Curated truth</td>
+                <td><code>bathroom_id</code></td>
+                <td><code>status</code>, <code>last_verified_at</code>, <code>accessible_ada</code>, <code>hours</code></td>
+                <td>QA’d + deduped</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="links">
-          <a class="btn" href="/projects/encampments/">Project page</a>
-          <a class="btn" href="/projects/encampments/thesis-context.html">Thesis context</a>
-          <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
-          <a class="btn" href="/projects/pitc-acs-correlation.html">Related: PITC × ACS</a>
+          <!-- Create these pages/paths in your repo -->
+          <a href="/projects/bathrooms/">Project</a>
+          <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/bathrooms">Code</a>
+          <a href="/pipelines/geospatial-data-pipelines/">Pipeline pattern</a>
         </div>
       </section>
 
-      <!-- PITC x ACS -->
-      <section class="card" id="pitc">
+      <!-- PITC × ACS project -->
+      <section class="card">
         <h2>PITC × ACS Correlations (p5.js)</h2>
-        <div class="meta">Methods write-up + interactive demo • client-side CSV + GeoJSON</div>
+        <div class="meta">
+          <span>Methods write-up + interactive demo • CSV + GeoJSON • client-side QA/communication</span>
+        </div>
 
         <ul>
           <li>Write-up: sources, assumptions, and interpretation</li>
-          <li>Demo: interactive tract map + Pearson r panel by year</li>
-          <li>Designed for exploratory QA + communicating tract-level relationships</li>
+          <li>Demo: tract map + correlation panel (Pearson r) by year</li>
+          <li>Designed for exploratory validation and storytelling</li>
         </ul>
 
         <div class="links">
-          <a class="btn" href="/projects/pitc-acs-correlation.html">Write-up</a>
-          <a class="btn" href="/projects/pitc-acs/">Live demo</a>
-          <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">Code</a>
-          <a class="btn" href="/projects/encampments/">Related: Encampments</a>
+          <a href="/projects/pitc-acs-correlation.html">Write-up</a>
+          <a href="/projects/pitc-acs/">Live demo</a>
+          <a href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">Code</a>
         </div>
       </section>
 
-      <!-- PIPELINES -->
-      <section class="card" id="pipelines">
-        <h2>Geospatial data pipelines</h2>
-        <div class="meta">Ingest → transform → validate • schema-first documentation</div>
-
-        <ul>
-          <li>Reusable pipeline patterns for ACS/tabular + boundary ingest</li>
-          <li>Focus on documentation, QA checks, and analysis-ready outputs</li>
-          <li>Serves as the “how it was built” companion to the projects</li>
-        </ul>
-
-        <div class="links">
-          <a class="btn" href="/pipelines/geospatial-data-pipelines/">Pipeline overview</a>
-        </div>
-      </section>
-
-      <!-- PLACEHOLDER -->
       <section class="card">
-        <h2>More projects (in progress)</h2>
+        <h2>Additional projects (in progress)</h2>
         <div class="meta">Prototypes, validation utilities, and exploratory workflows</div>
-        <p style="margin: 0; opacity: 0.92;">
-          I add new artifacts as analyses are finalized and documentation is cleaned up.
+        <p style="margin: 0;">
+          More examples will be added as pipelines and analyses are expanded.
         </p>
       </section>
 
@@ -221,7 +251,6 @@
     <footer>
       © <span id="year"></span> Annie Mewkill
     </footer>
-
   </div>
 
   <script>
