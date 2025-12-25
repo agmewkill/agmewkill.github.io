@@ -1,33 +1,53 @@
 # Public Bathroom Access Audit — San Diego County
 
 **Status:** 🚧 In progress (active development)  
-**Focus:** Geospatial data engineering, audit workflows, and public infrastructure analysis
+**Primary focus:** Geospatial data engineering, audit workflows, and public infrastructure analysis
 
-This project documents the development of an open-source, geospatial workflow to audit public bathroom access across San Diego County. The goal is to move an existing ArcGIS Online mapping project toward a transparent, reproducible, and extensible open-source data product that supports both **engineering workflows** and **policy analysis**.
+This project documents the development of an open-source geospatial system to audit **public bathroom access** across San Diego County. It is intentionally designed as both a **policy-relevant public interest project** and a **data engineering portfolio example** demonstrating scalable spatial workflows.
 
----
-
-## Project motivation
-
-Access to safe, publicly available bathrooms is a critical component of public health, accessibility, and homelessness response. Despite its importance, bathroom availability data is often fragmented, outdated, or locked behind proprietary platforms.
-
-This project aims to:
-- Create a **clear, auditable dataset** of public bathroom locations
-- Support **public-facing mapping and data entry**
-- Enable **repeatable geospatial pipelines** for validation and updates
-- Bridge **policy questions** with **engineering-grade data workflows**
+The work currently exists as an ArcGIS Online map and is being migrated toward an open, reproducible, pipeline-driven architecture.
 
 ---
 
-## Current state
+## Why this project exists
 
-- ✅ A working **ArcGIS Online map** documenting bathroom locations and attributes
-- ✅ Structured survey-style attributes (accessibility, hours, maintenance, etc.)
-- 🚧 Migration toward an **open-source stack**
-- 🚧 Pipeline development for ingestion, validation, and publishing
-- 🚧 Planning for user-submitted data and moderation workflows
+Access to publicly available bathrooms is a critical issue for:
+- public health,
+- accessibility and ADA compliance,
+- homelessness response,
+- and basic urban infrastructure planning.
 
-This repository represents the **open-source transition and engineering design**, not a finalized product.
+Despite this importance, bathroom access data is often:
+- fragmented across agencies,
+- outdated,
+- manually maintained,
+- or locked inside proprietary platforms.
+
+This project aims to create a **transparent, auditable, and extensible dataset** that can support both **analysis** and **public-facing tools**.
+
+---
+
+## Current state (legacy implementation)
+
+- ✅ Bathroom locations and attributes mapped in **ArcGIS Online**
+- ✅ Structured attributes (hours, accessibility, ownership, notes)
+- 🚧 No automated validation or versioning
+- 🚧 Manual update workflows
+- 🚧 Proprietary hosting
+
+The ArcGIS Online map is treated as a **source and reference implementation**, not the final product.
+
+---
+
+## Planned open-source architecture
+
+The long-term goal is to replace the legacy implementation with:
+
+- **Schema-driven ingestion**
+- **Automated validation**
+- **Versioned datasets**
+- **Support for user-submitted data**
+- **Open web visualization**
 
 ---
 
@@ -37,118 +57,69 @@ This repository represents the **open-source transition and engineering design**
 |--------|------------|
 | Geometry | Point locations (bathroom facilities) |
 | Geography | San Diego County |
-| Data type | Public infrastructure |
-| Privacy | No personally identifiable data |
+| Data sensitivity | Public infrastructure only |
+| Privacy | No personally identifiable information |
 
 ---
 
-## Example attributes (planned schema)
+## Example schema (draft)
 
 | Field | Description |
 |------|------------|
 | `bathroom_id` | Stable unique identifier |
-| `name` | Facility or location name |
-| `geometry` | Point location |
-| `hours` | Access hours (structured or free-text) |
+| `name` | Facility or site name |
+| `geometry` | Point (longitude/latitude) |
+| `hours` | Access hours |
 | `accessibility` | ADA accessible (yes/no/unknown) |
 | `ownership` | City, county, state, private |
 | `verified_date` | Last verification timestamp |
 | `source` | City data, field audit, user submission |
 
-> Final schema will be documented and versioned in pipeline configuration.
+Final schema will be versioned and documented during pipeline implementation.
 
 ---
 
-## Engineering goals
+## Engineering goals demonstrated
 
-This project is designed to demonstrate:
+This project is explicitly designed to demonstrate:
 
 - Geospatial data ingestion and normalization
-- Schema documentation and validation
-- Repeatable ETL workflows
-- Support for user-submitted spatial data
-- Clear separation of **project context** and **pipeline logic**
-- Documentation for internal and external contributors
+- Schema documentation and enforcement
+- Validation and QA workflows
+- Migration from proprietary GIS to open systems
+- Clear separation between **project context** and **reusable pipelines**
+- Communication of technical tradeoffs to non-engineers
 
 ---
 
 ## Relationship to pipelines
 
-This project **references**, but does not duplicate, reusable pipelines.
+This project **does not embed pipelines directly**.
 
-Planned pipeline location:
-pipelines/geospatial-data-pipelines/user-generated-geo-ingestion/
+Instead, it references reusable workflows located under: pipelines/user-generated-geo-ingestion
 
-Pipelines will handle:
-- Raw data ingestion (CSV, GeoJSON, API)
-- Geometry validation
-- Schema enforcement
-- QA checks (duplicates, invalid points)
-- Output datasets for mapping and analysis
+Those pipelines will handle:
+- raw data ingestion (CSV, GeoJSON, API),
+- geometry validation,
+- duplicate detection,
+- schema enforcement,
+- and output publishing.
 
----
-
-## Roadmap
-
-- [ ] Export ArcGIS Online data to open formats
-- [ ] Define and version schema
-- [ ] Build ingestion + validation pipeline
-- [ ] Publish initial open dataset
-- [ ] Prototype user submission workflow
-- [ ] Add moderation and QA rules
-- [ ] Integrate with public-facing map
-
----
-
-## Policy relevance
-
-This work supports:
-- Homelessness response planning
-- Public health access analysis
-- ADA accessibility audits
-- Infrastructure gap identification
-- Evidence-based advocacy
-
----
-
-## Repository structure (current)
-
-Pipelines will handle:
-- Raw data ingestion (CSV, GeoJSON, API)
-- Geometry validation
-- Schema enforcement
-- QA checks (duplicates, invalid points)
-- Output datasets for mapping and analysis
+This separation mirrors real production data systems.
 
 ---
 
 ## Roadmap
-
 - [ ] Export ArcGIS Online data to open formats
-- [ ] Define and version schema
+- [ ] Finalize and publish schema
 - [ ] Build ingestion + validation pipeline
-- [ ] Publish initial open dataset
+- [ ] Publish first open dataset
 - [ ] Prototype user submission workflow
 - [ ] Add moderation and QA rules
-- [ ] Integrate with public-facing map
+- [ ] Replace legacy map with open-source visualization
 
----
 
-## Policy relevance
 
-This work supports:
-- Homelessness response planning
-- Public health access analysis
-- ADA accessibility audits
-- Infrastructure gap identification
-- Evidence-based advocacy
 
----
-
-## Repository structure (current)
-projects/bathrooms/
-├── README.md
-├── index.html # Project overview page (planned)
-└── notes/ # Design notes, references, drafts
 
 
