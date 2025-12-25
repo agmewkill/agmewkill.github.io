@@ -23,7 +23,6 @@
       padding: 28px 18px;
     }
 
-    /* top navigation */
     .topbar {
       display: flex;
       gap: 10px;
@@ -72,7 +71,6 @@
     ul { margin: 10px 0 0; padding-left: 18px; }
     li { margin: 6px 0; }
 
-    /* figures */
     .figure {
       border: 1px solid rgba(127,127,127,0.25);
       border-radius: 16px;
@@ -107,7 +105,7 @@
   <div class="wrap">
 
     <!-- Navigation -->
-    <div class="topbar" aria-label="Page navigation">
+    <div class="topbar">
       <a class="btn" href="/">← Home</a>
       <a class="btn" href="/projects/">Projects</a>
       <a class="btn" href="/projects/encampments/">Encampments</a>
@@ -129,75 +127,62 @@
       <section class="card">
         <h2>Research framing</h2>
         <p class="muted">
-          Core research question:
+          Core question:
           <strong>
             How do tract-level socioeconomic conditions correlate with the presence
             and intensity of homeless encampments over time?
           </strong>
         </p>
-
         <ul>
           <li><strong>Unit of analysis:</strong> Census tract</li>
           <li><strong>Outcome:</strong> Tract-aggregated encampment counts (PITC)</li>
           <li><strong>Explanatory variables:</strong> ACS 5-year indicators (SDoH proxies)</li>
-          <li><strong>Purpose:</strong> Exploratory analysis and model preparation (not causal inference)</li>
+          <li><strong>Intent:</strong> Exploratory, non-causal analysis</li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>Cross-year correlation patterns</h2>
-
+        <h2>Cross-year correlation trends</h2>
         <div class="figure">
           <img
             src="/projects/encampments/assets/pitc_cross_year_trends_all_vars.png"
-            alt="PITC–ACS Spearman correlations over time for all variables"
+            alt="Cross-year PITC–ACS Spearman correlation trends"
           />
           <div class="cap">
             <strong>Figure 1.</strong> Spearman correlations between tract-level PITC encampment counts
             and ACS indicators across multiple years.  
             <br />
             <em>Interpretation:</em> While individual variables fluctuate year to year,
-            several socioeconomic indicators show persistent directional relationships
-            with encampment presence, suggesting structural rather than transient associations.
+            several indicators maintain consistent directional relationships with encampment presence,
+            suggesting structural rather than transient associations.
           </div>
         </div>
       </section>
 
       <section class="card">
         <h2>Top correlated ACS indicators</h2>
-
         <div class="figure">
           <img
             src="/projects/encampments/assets/pitc_cross_year_heatmap_top_vars.png"
-            alt="Heatmap of top PITC–ACS Spearman correlations by year"
+            alt="Heatmap of top PITC–ACS correlations by year"
           />
           <div class="cap">
             <strong>Figure 2.</strong> Heatmap of the strongest tract-level Spearman correlations
             between PITC counts and selected ACS variables.  
             <br />
             <em>Interpretation:</em> Housing instability, poverty-related measures,
-            and language or household structure indicators consistently rank among
-            the strongest correlates, reinforcing their relevance for downstream modeling
-            and policy-oriented analysis.
+            and household structure indicators consistently rank among the strongest correlates,
+            reinforcing their relevance for downstream modeling and policy analysis.
           </div>
         </div>
       </section>
 
       <section class="card">
-        <h2>Relationship to other project components</h2>
+        <h2>Related analysis</h2>
         <ul>
-          <li>
-            <a href="/projects/pitc-acs-correlation.html">PITC × ACS write-up</a> —
-            full methods, assumptions, and analytical discussion
-          </li>
-          <li>
-            <a href="/projects/pitc-acs/">PITC × ACS interactive</a> —
-            exploratory QA and visualization layer
-          </li>
-          <li>
-            <a href="/projects/encampments/">Encampments project page</a> —
-            data engineering workflow and pipeline structure
-          </li>
+          <li><a href="/projects/pitc-acs-correlation.html">PITC × ACS methods write-up</a></li>
+          <li><a href="/projects/pitc-acs/">PITC × ACS interactive demo</a></li>
+          <li><a href="/projects/encampments/">Encampments pipeline & workflow</a></li>
         </ul>
       </section>
 
