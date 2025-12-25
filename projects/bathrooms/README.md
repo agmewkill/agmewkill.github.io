@@ -1,125 +1,150 @@
-# Public Bathroom Access Audit — San Diego County
+# San Diego Public Bathroom Audit (Open Map + Data Pipeline)
 
-**Status:** 🚧 In progress (active development)  
-**Primary focus:** Geospatial data engineering, audit workflows, and public infrastructure analysis
+**Status:** 🚧 In progress (v0.x) — migrating from an ArcGIS Online prototype to an open-source pipeline + public submission workflow.
 
-This project documents the development of an open-source geospatial system to audit **public bathroom access** across San Diego County. It is intentionally designed as both a **policy-relevant public interest project** and a **data engineering portfolio example** demonstrating scalable spatial workflows.
+An open-source, privacy-aware workflow to **collect, validate, and publish** a continuously improving geospatial dataset of **public bathroom access** across San Diego County.
 
-The work currently exists as an ArcGIS Online map and is being migrated toward an open, reproducible, pipeline-driven architecture.
+This project has two outputs:
+1) **Interactive map (user-facing):** view bathrooms + submit new locations + complete a short audit form
+2) **Canonical dataset (engineering + policy):** versioned, analysis-ready outputs produced via repeatable ETL + QA
 
----
-
-## Why this project exists
-
-Access to publicly available bathrooms is a critical issue for:
-- public health,
-- accessibility and ADA compliance,
-- homelessness response,
-- and basic urban infrastructure planning.
-
-Despite this importance, bathroom access data is often:
-- fragmented across agencies,
-- outdated,
-- manually maintained,
-- or locked inside proprietary platforms.
-
-This project aims to create a **transparent, auditable, and extensible dataset** that can support both **analysis** and **public-facing tools**.
+The map is the interface — the **product is the validated dataset + documentation** that makes the data reliable for engineering and policy use.
 
 ---
 
-## Current state (legacy implementation)
+## What exists today
+- **AGOL prototype map** (current working version)
+- Manual exports used as **seed data**
+- Defined **data model + validation approach** (this repo)
 
-- ✅ Bathroom locations and attributes mapped in **ArcGIS Online**
-- ✅ Structured attributes (hours, accessibility, ownership, notes)
-- 🚧 No automated validation or versioning
-- 🚧 Manual update workflows
-- 🚧 Proprietary hosting
-
-The ArcGIS Online map is treated as a **source and reference implementation**, not the final product.
-
----
-
-## Planned open-source architecture
-
-The long-term goal is to replace the legacy implementation with:
-
-- **Schema-driven ingestion**
-- **Automated validation**
-- **Versioned datasets**
-- **Support for user-submitted data**
-- **Open web visualization**
+## What’s being built next
+- Automated **AGOL export → raw ingest**
+- Append-only **user submission intake**
+- Validation + normalization + de-duplication
+- Versioned canonical outputs (GeoJSON/CSV/Parquet)
+- Open-source map UI that separates **verified** vs **unverified** layers
 
 ---
 
-## Unit of analysis
+## Why this exists (policy + public health use)
+Public bathroom availability is a critical access issue for:
+- unhoused residents and outreach teams
+- people with disabilities
+- older adults, families, and commuters
+- public health and sanitation efforts
 
-| Component | Description |
-|--------|------------|
-| Geometry | Point locations (bathroom facilities) |
-| Geography | San Diego County |
-| Data sensitivity | Public infrastructure only |
-| Privacy | No personally identifiable information |
-
----
-
-## Example schema (draft)
-
-| Field | Description |
-|------|------------|
-| `bathroom_id` | Stable unique identifier |
-| `name` | Facility or site name |
-| `geometry` | Point (longitude/latitude) |
-| `hours` | Access hours |
-| `accessibility` | ADA accessible (yes/no/unknown) |
-| `ownership` | City, county, state, private |
-| `verified_date` | Last verification timestamp |
-| `source` | City data, field audit, user submission |
-
-Final schema will be versioned and documented during pipeline implementation.
+Existing data is fragmented, inconsistent, or outdated. This project creates a **standardized, auditable dataset** suitable for:
+- coverage gap analysis
+- accessibility audits
+- service planning and prioritization
+- integration into GIS/public health workflows
 
 ---
 
-## Engineering goals demonstrated
-
-This project is explicitly designed to demonstrate:
-
-- Geospatial data ingestion and normalization
-- Schema documentation and enforcement
-- Validation and QA workflows
-- Migration from proprietary GIS to open systems
-- Clear separation between **project context** and **reusable pipelines**
-- Communication of technical tradeoffs to non-engineers
+## Data principles
+- **Safety & privacy:** no personally identifying information is collected.
+- **Auditability:** every record includes timestamps and provenance.
+- **Validation-first:** submissions are *inputs* and must pass QA before entering canonical data.
+- **Reproducibility:** outputs are generated by scripts, not manual edits.
 
 ---
 
-## Relationship to pipelines
+## Data model (high level)
 
-This project **does not embed pipelines directly**.
+### 1) Submissions (raw / append-only)
+User-submitted points and form responses stored as an append-only log.
 
-Instead, it references reusable workflows located under: pipelines/user-generated-geo-ingestion
+Example fields:
+- `submission_id`
+- `submitted_at`
+- `source` (web form, AGOL export, partner list)
+- `lat`, `lon`
+- `bathroom_name` (optional)
+- audit attributes (below)
 
-Those pipelines will handle:
-- raw data ingestion (CSV, GeoJSON, API),
-- geometry validation,
-- duplicate detection,
-- schema enforcement,
-- and output publishing.
+> Submissions may be shown on the map as **unverified** but do not enter canonical outputs until validated.
 
-This separation mirrors real production data systems.
+### 2) Canonical bathrooms (validated)
+Curated “best current truth” dataset produced from validated submissions + trusted imports.
+
+Example fields:
+- `bathroom_id` (stable identifier)
+- `geometry`
+- `status` (active / unknown / closed)
+- `last_verified_at`
+- standardized audit attributes
+
+### Audit attributes
+- `open_to_public` (yes/no/unknown)
+- `hours` (structured where possible)
+- `accessible_ada` (yes/no/unknown)
+- `requires_purchase` (yes/no/unknown)
+- `restroom_type` (single, multi-stall, portable, other)
+- `condition_score` (1–5)
+- `has_handwashing` (yes/no/unknown)
+- `safety_notes` (short, optional; no PII)
+
+---
+
+## Pipeline overview
+1) **Ingest**
+   - AGOL exports (seed dataset)
+   - user submissions (append-only)
+   - partner/city datasets (when available)
+
+2) **Validate + normalize**
+   - schema checks (required fields, datatypes)
+   - geometry checks (valid coords; in-county bounds)
+   - de-duplication / clustering (near-identical points)
+   - standardization of categorical fields
+
+3) **Publish**
+   - `outputs/bathrooms_canonical.geojson`
+   - `outputs/bathrooms_canonical.parquet`
+   - `outputs/bathrooms_canonical.csv`
+   - optional summary tables for policy reporting
+
+---
+
+## Suggested repo structure
+bathrooms/
+README.md
+LICENSE
+.gitignore
+data/
+raw/ # append-only exports + submissions (ignored or private)
+interim/ # derived working files (ignored)
+outputs/ # published, versioned artifacts (small, reviewable)
+src/
+ingest/
+export_agol.py
+ingest_submissions.py
+validate/
+schema.py
+geometry_checks.py
+dedupe.py
+publish/
+build_canonical.py
+export_outputs.py
+schema/
+bathrooms_schema.yml
+docs/
+decisions.md
+field_guide.md
 
 ---
 
 ## Roadmap
-- [ ] Export ArcGIS Online data to open formats
-- [ ] Finalize and publish schema
-- [ ] Build ingestion + validation pipeline
-- [ ] Publish first open dataset
-- [ ] Prototype user submission workflow
-- [ ] Add moderation and QA rules
-- [ ] Replace legacy map with open-source visualization
+- [x] AGOL prototype map + audit fields
+- [x] Draft schema + validation rules
+- [ ] Automated AGOL export → raw ingest
+- [ ] Public submission form → append-only log
+- [ ] Validation + dedupe + stable `bathroom_id`
+- [ ] Canonical dataset publish (GeoJSON/CSV/Parquet)
+- [ ] Open-source map UI (verified vs unverified)
+- [ ] Optional: PostGIS + FastAPI + Dockerized pipeline
 
+---
 
-
-
-
-
+## Notes (privacy)
+Do not collect names, contact info, or any identifying details. Keep `safety_notes` short and non-identifying.
