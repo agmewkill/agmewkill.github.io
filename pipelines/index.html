@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Geospatial data pipelines by Annie Mewkill: ingest, validate, publish patterns with schema-first documentation." />
+  <title>Pipelines — Annie Mewkill</title>
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+
+    .topbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .btn {
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 14px;
+      font-weight: 800;
+      background: rgba(127,127,127,0.10);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn:hover { background: rgba(127,127,127,0.18); }
+    .btn.primary { border-color: rgba(127,127,127,0.55); background: rgba(127,127,127,0.14); }
+
+    header { display: grid; gap: 10px; }
+    h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
+    .lead { margin: 0; max-width: 85ch; opacity: 0.9; }
+
+    .grid { display: grid; gap: 16px; margin-top: 16px; }
+
+    .card {
+      border: 1px solid rgba(127,127,127,0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(127,127,127,0.06);
+    }
+    .card h2 { margin: 0 0 6px; font-size: 1.2rem; }
+    .meta { margin: 0 0 10px; opacity: 0.85; font-size: 0.95rem; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(127,127,127,0.35);
+      background: rgba(127,127,127,0.08);
+      margin-left: 8px;
+      vertical-align: middle;
+      font-weight: 800;
+    }
+
+    ul { margin: 10px 0 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+
+    .links { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip {
+      padding: 8px 12px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 12px;
+      font-weight: 800;
+      background: rgba(127,127,127,0.06);
+    }
+    .chip:hover { background: rgba(127,127,127,0.12); }
+
+    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(127,127,127,0.2); opacity: 0.85; font-size: 0.95rem; }
+    code { font-size: 0.95em; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <nav class="topbar" aria-label="Site navigation">
+      <a class="btn" href="/">← Home</a>
+      <a class="btn" href="/projects/">Projects</a>
+      <a class="btn primary" href="/pipelines/">Pipelines</a>
+      <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
+      <a class="btn" href="https://github.com/agmewkill">GitHub</a>
+    </nav>
+
+    <header>
+      <h1>Pipelines</h1>
+      <p class="lead">
+        Pipeline folders show how I structure ingest → validate → publish workflows with schema documentation,
+        QA checks, and reproducible outputs. These are the “engineering” counterparts to the project write-ups.
+      </p>
+    </header>
+
+    <main class="grid">
+
+      <section class="card">
+        <h2>Geospatial Data Pipelines (core patterns)</h2>
+        <p class="meta">Schema-first • QA checks • analysis-ready outputs</p>
+
+        <ul>
+          <li>Reusable structure for ingest, transform, validate, and publish</li>
+          <li>Explicit schema docs + stable joins (e.g., <code>GEOID</code>)</li>
+          <li>Designed to be extended to PostGIS/FastAPI later</li>
+        </ul>
+
+        <div class="links">
+          <a class="chip" href="/pipelines/geospatial-data-pipelines/">Open pipeline</a>
+          <a class="chip" href="/projects/encampments/">Used in: Encampments</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Bathroom Audit Pipeline <span class="badge">IN PROGRESS</span></h2>
+        <p class="meta">User submissions → QA → canonical dataset publish</p>
+
+        <ul>
+          <li>Ingest ArcGIS Online export + user-submitted intake (form)</li>
+          <li>Validate: schema, bounds, duplicates, and categorical standardization</li>
+          <li>Publish: GeoJSON/CSV/Parquet + summary tables for policy reporting</li>
+        </ul>
+
+        <div class="links">
+          <a class="chip" href="/pipelines/bathrooms/">Open pipeline (WIP)</a>
+          <a class="chip" href="/projects/bathrooms/">Project page</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Annie Mewkill
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
