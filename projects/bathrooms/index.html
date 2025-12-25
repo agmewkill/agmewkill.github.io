@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Open-source audit of public bathroom access across San Diego County, transitioning from ArcGIS Online to reproducible geospatial pipelines." />
+  <title>Public Bathroom Access Audit — San Diego | Annie Mewkill</title>
+
+  <style>
+    :root { color-scheme: light dark; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+
+    /* Top navigation */
+    .topbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border: 1px solid rgba(127,127,127,0.35);
+      border-radius: 14px;
+      font-weight: 700;
+      background: rgba(127,127,127,0.10);
+    }
+
+    .btn:hover {
+      background: rgba(127,127,127,0.18);
+    }
+
+    h1 {
+      margin: 10px 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .status {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.45);
+    }
+
+    .lead {
+      max-width: 75ch;
+      opacity: 0.9;
+      margin: 0 0 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid rgba(127,127,127,0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(127,127,127,0.05);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    li { margin: 6px 0; }
+
+    .links {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    code { font-size: 0.95em; }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(127,127,127,0.2);
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- NAVIGATION -->
+    <div class="topbar" aria-label="Page navigation">
+      <a class="btn" href="/">← Home</a>
+      <a class="btn" href="/projects/">Projects</a>
+      <a class="btn" href="README.md">README</a>
+      <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/bathrooms">Code</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <span class="status">🚧 In progress</span>
+      <h1>Public Bathroom Access Audit — San Diego County</h1>
+      <p class="lead">
+        An open-source geospatial project auditing public bathroom access across San Diego County.
+        This work transitions an existing ArcGIS Online mapping effort into a reproducible,
+        pipeline-driven data product that supports both policy analysis and engineering workflows.
+      </p>
+    </header>
+
+    <main class="grid">
+
+      <section class="card">
+        <h2>Why this project</h2>
+        <ul>
+          <li>Public bathroom access is a critical public health and accessibility issue</li>
+          <li>Existing data is often fragmented, outdated, or locked behind proprietary platforms</li>
+          <li>This project prioritizes transparency, auditability, and open data principles</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Current state</h2>
+        <ul>
+          <li>Bathroom locations and attributes currently exist in ArcGIS Online</li>
+          <li>Attributes include access hours, ownership, and accessibility indicators</li>
+          <li>This repository documents the transition to an open-source workflow</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Engineering focus</h2>
+        <ul>
+          <li>Point-based geospatial data ingestion and normalization</li>
+          <li>Schema definition and validation</li>
+          <li>Repeatable ETL pipelines for updates and QA</li>
+          <li>Preparation for user-submitted data and moderation workflows</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Policy relevance</h2>
+        <ul>
+          <li>Homelessness response and service access planning</li>
+          <li>ADA accessibility audits</li>
+          <li>Public infrastructure gap analysis</li>
+          <li>Evidence-based advocacy and planning</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Planned next steps</h2>
+        <ul>
+          <li>Export ArcGIS Online data to open formats (CSV / GeoJSON)</li>
+          <li>Define and version dataset schema</li>
+          <li>Implement validation and QA pipelines</li>
+          <li>Publish a public-facing interactive map</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Annie Mewkill
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
