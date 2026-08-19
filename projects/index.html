@@ -3,35 +3,102 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Projects by Annie Mewkill: privacy-preserving tract-level analysis, interactive mapping, and civic geospatial data tooling." />
+
+  <meta
+    name="description"
+    content="Projects by Annie Mewkill: privacy-preserving tract-level analysis, interactive mapping, civic geospatial data tooling, and public restroom auditing infrastructure."
+  />
+
   <title>Projects — Annie Mewkill</title>
 
   <style>
-    :root { color-scheme: light dark; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
 
-    /* shared topbar */
-    .topbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    :root {
+      color-scheme: light dark;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+
+
+    /* =========================
+       TOPBAR
+       ========================= */
+
+    .topbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
     .btn {
       padding: 10px 14px;
       border: 1px solid rgba(127,127,127,0.35);
       border-radius: 14px;
       font-weight: 800;
       background: rgba(127,127,127,0.10);
+
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
-    .btn:hover { background: rgba(127,127,127,0.18); }
-    .btn.primary { border-color: rgba(127,127,127,0.55); background: rgba(127,127,127,0.14); }
 
-    header { display: grid; gap: 10px; }
-    h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
-    .lead { margin: 0; max-width: 85ch; opacity: 0.9; }
+    .btn:hover {
+      background: rgba(127,127,127,0.18);
+    }
 
-    .grid { display: grid; gap: 16px; margin-top: 16px; }
+    .btn.primary {
+      border-color: rgba(127,127,127,0.55);
+      background: rgba(127,127,127,0.14);
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    header {
+      display: grid;
+      gap: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 85ch;
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       PROJECT CARDS
+       ========================= */
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
 
     .card {
       border: 1px solid rgba(127,127,127,0.25);
@@ -39,173 +106,615 @@
       padding: 16px;
       background: rgba(127,127,127,0.06);
     }
-    .card h2 { margin: 0 0 6px; font-size: 1.2rem; }
-    .meta { margin: 0 0 10px; opacity: 0.85; font-size: 0.95rem; }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .meta {
+      margin: 0 0 10px;
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
 
     .badge {
       display: inline-block;
+
       font-size: 0.85rem;
+
       padding: 4px 10px;
+
       border-radius: 999px;
+
       border: 1px solid rgba(127,127,127,0.35);
+
       background: rgba(127,127,127,0.08);
+
       margin-left: 8px;
+
       vertical-align: middle;
+
       font-weight: 900;
+
       letter-spacing: 0.02em;
     }
 
-    ul { margin: 10px 0 0; padding-left: 18px; }
-    li { margin: 6px 0; }
 
-    .links { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+    /* =========================
+       LISTS
+       ========================= */
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+
+    /* =========================
+       PROJECT LINKS
+       ========================= */
+
+    .links {
+      margin-top: 12px;
+
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+    }
+
     .chip {
       padding: 8px 12px;
+
       border: 1px solid rgba(127,127,127,0.35);
+
       border-radius: 12px;
+
       font-weight: 850;
+
       background: rgba(127,127,127,0.06);
+
       display: inline-block;
     }
-    .chip:hover { background: rgba(127,127,127,0.12); }
 
-    /* tiny schema table (optional but nice for “serious WIP”) */
-    .schema-wrap {
-      margin-top: 12px;
-      overflow-x: auto;
-      border-radius: 14px;
-      border: 1px solid rgba(127,127,127,0.25);
-      background: rgba(127,127,127,0.03);
+    .chip:hover {
+      background: rgba(127,127,127,0.12);
     }
-    table.schema { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 760px; }
-    .schema th, .schema td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(127,127,127,0.18); vertical-align: top; }
-    .schema th { font-weight: 900; opacity: 0.95; }
-    code { font-size: 0.95em; }
 
-    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(127,127,127,0.2); opacity: 0.85; font-size: 0.95rem; }
+
+    /* =========================
+       BATHROOM ARCHITECTURE
+       ========================= */
+
+    .architecture {
+      margin-top: 14px;
+
+      padding: 14px;
+
+      border: 1px solid rgba(127,127,127,0.25);
+
+      border-radius: 14px;
+
+      background: rgba(127,127,127,0.03);
+
+      overflow-x: auto;
+    }
+
+    .architecture pre {
+      margin: 0;
+
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+
+      font-size: 0.88rem;
+
+      line-height: 1.5;
+
+      white-space: pre;
+    }
+
+
+    /* =========================
+       TECH STACK
+       ========================= */
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .tech {
+      display: inline-block;
+
+      padding: 5px 9px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(127,127,127,0.30);
+
+      background: rgba(127,127,127,0.06);
+
+      font-size: 0.82rem;
+
+      font-weight: 750;
+    }
+
+
+    code {
+      font-size: 0.95em;
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      margin-top: 28px;
+
+      padding-top: 16px;
+
+      border-top:
+        1px solid rgba(127,127,127,0.2);
+
+      opacity: 0.85;
+
+      font-size: 0.95rem;
+    }
+
   </style>
 </head>
 
+
 <body>
+
   <div class="wrap">
 
-    <nav class="topbar" aria-label="Site navigation">
-      <a class="btn" href="/">← Home</a>
-      <a class="btn primary" href="/projects/">Projects</a>
-      <a class="btn" href="/pipelines/">Pipelines</a>
-      <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume</a>
-      <a class="btn" href="https://github.com/agmewkill">GitHub</a>
-      <a class="btn" href="mailto:agmewkill@gmail.com">Email</a>
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
+    <nav
+      class="topbar"
+      aria-label="Site navigation"
+    >
+
+      <a
+        class="btn"
+        href="/"
+      >
+        ← Home
+      </a>
+
+      <a
+        class="btn primary"
+        href="/projects/"
+      >
+        Projects
+      </a>
+
+      <a
+        class="btn"
+        href="/pipelines/"
+      >
+        Pipelines
+      </a>
+
+      <a
+        class="btn"
+        href="/assets/pdfs/Annie_Mewkill_Resume.pdf"
+      >
+        Resume
+      </a>
+
+      <a
+        class="btn"
+        href="https://github.com/agmewkill"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub
+      </a>
+
+      <a
+        class="btn"
+        href="mailto:agmewkill@gmail.com"
+      >
+        Email
+      </a>
+
     </nav>
 
+
+
+    <!-- =========================
+         HEADER
+         ========================= -->
+
     <header>
-      <h1>Projects</h1>
+
+      <h1>
+        Projects
+      </h1>
+
       <p class="lead">
-        Selected work demonstrating geospatial ingestion, cleaning, validation, and publishing.
-        Projects link to code and (when applicable) pipeline folders that show the engineering steps.
+
+        Selected work demonstrating geospatial data engineering,
+        spatial analysis, interactive mapping, validation,
+        research-oriented data systems, and public-facing
+        civic technology.
+
+        Projects link to code and supporting pages that document
+        the engineering and analytical workflows behind them.
+
       </p>
+
     </header>
+
+
 
     <main class="grid">
 
-      <!-- Encampments -->
+
+      <!-- =====================================================
+           ENCAMPMENTS
+           ===================================================== -->
+
       <section class="card">
-        <h2>Encampments × ACS (San Diego)</h2>
-        <p class="meta">Tract-level analysis • privacy-preserving aggregation • join via <code>GEOID</code></p>
+
+        <h2>
+          Encampments × ACS (San Diego)
+        </h2>
+
+        <p class="meta">
+          Tract-level analysis • privacy-preserving aggregation •
+          join via <code>GEOID</code>
+        </p>
+
 
         <ul>
-          <li>Encampment counts are tract-aggregated (no point-level locations)</li>
-          <li>ACS indicators standardized + documented for comparability</li>
-          <li>Produces an analysis-ready tract table for descriptives and modeling</li>
+
+          <li>
+            Encampment counts are tract-aggregated
+            with no point-level locations published
+          </li>
+
+          <li>
+            ACS indicators are standardized and documented
+            for comparability
+          </li>
+
+          <li>
+            Produces an analysis-ready tract table
+            for descriptives and modeling
+          </li>
+
         </ul>
 
+
         <div class="links">
-          <a class="chip" href="/projects/encampments/">Project page</a>
-          <a class="chip" href="/projects/encampments/thesis-context.html">Thesis context</a>
-          <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
-          <a class="chip" href="/pipelines/geospatial-data-pipelines/">Pipeline patterns</a>
-          <a class="chip" href="/projects/pitc-acs-correlation.html">Related: PITC × ACS</a>
+
+          <a
+            class="chip"
+            href="/projects/encampments/"
+          >
+            Project page
+          </a>
+
+          <a
+            class="chip"
+            href="/projects/encampments/thesis-context.html"
+          >
+            Thesis context
+          </a>
+
+          <a
+            class="chip"
+            href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments"
+            target="_blank"
+            rel="noopener"
+          >
+            Code
+          </a>
+
+          <a
+            class="chip"
+            href="/pipelines/geospatial-data-pipelines/"
+          >
+            Pipeline patterns
+          </a>
+
+          <a
+            class="chip"
+            href="/projects/pitc-acs-correlation.html"
+          >
+            Related: PITC × ACS
+          </a>
+
         </div>
+
       </section>
 
-      <!-- Bathrooms -->
+
+
+      <!-- =====================================================
+           PUBLIC RESTROOM AUDIT
+           ===================================================== -->
+
       <section class="card">
-        <h2>San Diego Public Bathroom Access Audit <span class="badge">IN PROGRESS</span></h2>
-        <p class="meta">Open map + validation pipeline • user submissions → canonical dataset</p>
+
+        <h2>
+          San Diego Public Restroom Access Audit
+
+          <span class="badge">
+            ACTIVE DEVELOPMENT
+          </span>
+        </h2>
+
+
+        <p class="meta">
+          Open-source web mapping • field auditing •
+          moderated submissions • live geospatial data
+        </p>
+
 
         <ul>
-          <li>Goal: an auditable, continuously improving dataset of public bathroom access across the county</li>
-          <li>Raw submissions are treated as inputs; QA gates decide what enters the canonical layer</li>
-          <li>Designed for engineering (ETL, schema, QA) and policy (coverage gaps, accessibility, prioritization)</li>
+
+          <li>
+            Built a public-facing Leaflet map for exploring
+            public restroom locations across San Diego County
+          </li>
+
+          <li>
+            Restroom markers communicate current recorded status:
+            open, closed, or unknown
+          </li>
+
+          <li>
+            Developed a button-triggered field audit interface
+            for both new restroom submissions and updates to
+            existing locations
+          </li>
+
+          <li>
+            New restroom coordinates can be collected through
+            map interaction or device geolocation
+          </li>
+
+          <li>
+            Existing restrooms use persistent identifiers so
+            repeat audits update the correct location rather
+            than creating duplicate records
+          </li>
+
+          <li>
+            User submissions enter a review queue and do not
+            immediately alter the public dataset
+          </li>
+
+          <li>
+            Approved records are promoted into the public-facing
+            restroom dataset through Google Apps Script
+          </li>
+
         </ul>
 
-        <div class="schema-wrap" aria-label="Bathroom audit data model overview">
-          <table class="schema">
-            <thead>
-              <tr>
-                <th>Layer</th>
-                <th>What it is</th>
-                <th>Key field(s)</th>
-                <th>Example fields</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Submissions</strong> (raw)</td>
-                <td>Append-only intake log</td>
-                <td><code>submission_id</code>, <code>submitted_at</code></td>
-                <td><code>lat</code>, <code>lon</code>, <code>open_to_public</code>, <code>accessible_ada</code></td>
-              </tr>
-              <tr>
-                <td><strong>Canonical bathrooms</strong></td>
-                <td>Validated “best current truth”</td>
-                <td><code>bathroom_id</code>, <code>last_verified_at</code></td>
-                <td><code>status</code>, <code>hours</code>, <code>requires_purchase</code></td>
-              </tr>
-              <tr>
-                <td><strong>Policy summaries</strong></td>
-                <td>Reporting + gap analysis outputs</td>
-                <td><code>area_id</code>, <code>time_window</code></td>
-                <td><code>coverage_rate</code>, <code>ada_share</code>, <code>priority_score</code></td>
-              </tr>
-            </tbody>
-          </table>
+
+
+        <!-- TECH STACK -->
+
+        <div
+          class="stack"
+          aria-label="Technology stack"
+        >
+
+          <span class="tech">
+            Leaflet
+          </span>
+
+          <span class="tech">
+            OpenStreetMap
+          </span>
+
+          <span class="tech">
+            JavaScript
+          </span>
+
+          <span class="tech">
+            HTML / CSS
+          </span>
+
+          <span class="tech">
+            Google Sheets
+          </span>
+
+          <span class="tech">
+            Google Apps Script
+          </span>
+
+          <span class="tech">
+            GitHub Pages
+          </span>
+
+          <span class="tech">
+            Papa Parse
+          </span>
+
         </div>
+
+
+
+        <!-- ARCHITECTURE -->
+
+        <div
+          class="architecture"
+          aria-label="Bathroom auditing system architecture"
+        >
+
+<pre>Public map
+    │
+    │ reads approved data
+    ▼
+Google Sheets
+restrooms_editable
+    ▲
+    │
+    │ approved additions / updates
+    │
+Google Apps Script
+    ▲
+    │
+    │ audit submission
+    │
+Field audit form
+    │
+    ▼
+Google Sheets
+submissions
+approved = FALSE
+    │
+    ▼
+Project-team review
+    │
+approved = TRUE
+    ▼
+Publish approved change</pre>
+
+        </div>
+
+
 
         <div class="links">
-          <a class="chip" href="/projects/bathrooms/">Project page</a>
-          <a class="chip" href="/pipelines/bathrooms/">Pipeline (WIP)</a>
-          <a class="chip" href="https://github.com/agmewkill">Repo (coming)</a>
+
+          <a
+            class="chip"
+            href="/projects/bathrooms/"
+          >
+            Project page
+          </a>
+
+          <a
+            class="chip"
+            href="https://github.com/psj-sdsu/auditing-sd-bathrooms"
+            target="_blank"
+            rel="noopener"
+          >
+            Project repository
+          </a>
+
+          <a
+            class="chip"
+            href="/pipelines/bathrooms/"
+          >
+            Pipeline documentation
+          </a>
+
         </div>
+
       </section>
 
-      <!-- PITC -->
+
+
+      <!-- =====================================================
+           PITC × ACS
+           ===================================================== -->
+
       <section class="card">
-        <h2>PITC × ACS Correlations (p5.js)</h2>
-        <p class="meta">Methods write-up + interactive demo • client-side CSV + GeoJSON</p>
+
+        <h2>
+          PITC × ACS Correlations (p5.js)
+        </h2>
+
+        <p class="meta">
+          Methods write-up + interactive demo •
+          client-side CSV + GeoJSON
+        </p>
+
 
         <ul>
-          <li>Write-up: sources, assumptions, and interpretation</li>
-          <li>Demo: interactive tract map + correlation panel for exploratory QA/communication</li>
+
+          <li>
+            Write-up documenting sources,
+            assumptions, and interpretation
+          </li>
+
+          <li>
+            Interactive tract map and correlation panel
+            for exploratory QA and communication
+          </li>
+
         </ul>
 
+
         <div class="links">
-          <a class="chip" href="/projects/pitc-acs-correlation.html">Write-up</a>
-          <a class="chip" href="/projects/pitc-acs/">Live demo</a>
-          <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">Code</a>
+
+          <a
+            class="chip"
+            href="/projects/pitc-acs-correlation.html"
+          >
+            Write-up
+          </a>
+
+          <a
+            class="chip"
+            href="/projects/pitc-acs/"
+          >
+            Live demo
+          </a>
+
+          <a
+            class="chip"
+            href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs"
+            target="_blank"
+            rel="noopener"
+          >
+            Code
+          </a>
+
         </div>
+
       </section>
+
 
     </main>
 
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer>
-      © <span id="year"></span> Annie Mewkill
+      © <span id="year"></span>
+      Annie Mewkill
     </footer>
 
   </div>
 
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document
+      .getElementById("year")
+      .textContent =
+        new Date().getFullYear();
+
   </script>
+
+
 </body>
 </html>
