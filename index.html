@@ -1,13 +1,24 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Annie Mewkill — GIS & geospatial data engineering portfolio: privacy-preserving tract-level analysis, reproducible pipelines, and interactive mapping demos." />
+  <meta
+    name="description"
+    content="Annie Mewkill — GIS researcher and geospatial data professional specializing in reproducible workflows, spatial analysis, privacy-preserving aggregation, and interactive mapping."
+  />
+
   <title>Annie Mewkill — Geospatial Data & GIS Portfolio</title>
 
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      color-scheme: light dark;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -15,7 +26,10 @@
       line-height: 1.5;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .wrap {
       max-width: 980px;
@@ -57,17 +71,19 @@
 
     .btn {
       padding: 10px 14px;
-      border: 1px solid rgba(127,127,127,0.35);
+      border: 1px solid rgba(127, 127, 127, 0.35);
       border-radius: 12px;
       font-weight: 650;
-      background: rgba(127,127,127,0.06);
+      background: rgba(127, 127, 127, 0.06);
     }
 
-    .btn:hover { background: rgba(127,127,127,0.12); }
+    .btn:hover {
+      background: rgba(127, 127, 127, 0.12);
+    }
 
     .btn.primary {
       font-weight: 800;
-      border-color: rgba(127,127,127,0.55);
+      border-color: rgba(127, 127, 127, 0.55);
     }
 
     .pillrow {
@@ -80,9 +96,9 @@
     .pill {
       font-size: 0.9rem;
       padding: 6px 10px;
-      border: 1px solid rgba(127,127,127,0.25);
+      border: 1px solid rgba(127, 127, 127, 0.25);
       border-radius: 999px;
-      background: rgba(127,127,127,0.05);
+      background: rgba(127, 127, 127, 0.05);
     }
 
     .grid {
@@ -93,14 +109,16 @@
     }
 
     @media (min-width: 820px) {
-      .grid { grid-template-columns: 1.15fr 0.85fr; }
+      .grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
     }
 
     .card {
-      border: 1px solid rgba(127,127,127,0.25);
+      border: 1px solid rgba(127, 127, 127, 0.25);
       border-radius: 16px;
       padding: 16px;
-      background: rgba(127,127,127,0.06);
+      background: rgba(127, 127, 127, 0.06);
     }
 
     .card h2 {
@@ -108,10 +126,19 @@
       font-size: 1.15rem;
     }
 
-    .card p { margin: 0 0 10px; opacity: 0.92; }
+    .card p {
+      margin: 0 0 10px;
+      opacity: 0.92;
+    }
 
-    ul { margin: 0; padding-left: 18px; }
-    li { margin: 6px 0; }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
 
     .proj {
       display: grid;
@@ -122,12 +149,14 @@
       display: grid;
       gap: 6px;
       padding: 12px;
-      border: 1px solid rgba(127,127,127,0.22);
+      border: 1px solid rgba(127, 127, 127, 0.22);
       border-radius: 14px;
-      background: rgba(127,127,127,0.04);
+      background: rgba(127, 127, 127, 0.04);
     }
 
-    .projitem:hover { background: rgba(127,127,127,0.08); }
+    .projitem:hover {
+      background: rgba(127, 127, 127, 0.08);
+    }
 
     .projtitle {
       font-weight: 850;
@@ -148,18 +177,59 @@
 
     .chip {
       padding: 8px 12px;
-      border: 1px solid rgba(127,127,127,0.35);
+      border: 1px solid rgba(127, 127, 127, 0.35);
       border-radius: 12px;
       font-weight: 750;
-      background: rgba(127,127,127,0.06);
+      background: rgba(127, 127, 127, 0.06);
     }
 
-    .chip:hover { background: rgba(127,127,127,0.12); }
+    .chip:hover {
+      background: rgba(127, 127, 127, 0.12);
+    }
+
+    .publications {
+      margin-top: 22px;
+    }
+
+    .publist {
+      display: grid;
+      gap: 12px;
+    }
+
+    .pubitem {
+      display: grid;
+      gap: 6px;
+      padding: 14px;
+      border: 1px solid rgba(127, 127, 127, 0.22);
+      border-radius: 14px;
+      background: rgba(127, 127, 127, 0.04);
+    }
+
+    .pubtitle {
+      font-weight: 850;
+      letter-spacing: -0.01em;
+    }
+
+    .pubmeta {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .pubdesc {
+      margin: 4px 0 0;
+    }
+
+    .publinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
 
     footer {
       margin-top: 26px;
       padding-top: 16px;
-      border-top: 1px solid rgba(127,127,127,0.2);
+      border-top: 1px solid rgba(127, 127, 127, 0.2);
       opacity: 0.85;
       font-size: 0.95rem;
     }
@@ -168,22 +238,37 @@
 
 <body>
   <div class="wrap">
+
     <header>
-      <p class="kicker">Geospatial data processing • Privacy-preserving analysis • Interactive mapping</p>
+      <p class="kicker">
+        Geospatial data processing • Spatial analysis • Privacy-preserving research • Interactive mapping
+      </p>
+
       <h1>Annie Mewkill</h1>
 
       <p class="lead">
-        GIS master’s student (San Diego State University) building reproducible workflows for ingesting,
-        cleaning, validating, and transforming geospatial datasets into analysis-ready outputs.
-        Current work focuses on tract-level relationships between homelessness, public infrastructure,
-        and social determinants of health in San Diego County.
+        GIS researcher and geospatial data professional specializing in reproducible
+        workflows for ingesting, cleaning, validating, analyzing, and transforming
+        spatial datasets into analysis-ready outputs. My research focuses on spatial
+        inequities, homelessness, public infrastructure, and social determinants of
+        health in San Diego County.
       </p>
 
       <div class="btns" aria-label="Primary navigation">
         <a class="btn primary" href="/projects/">Projects</a>
+        <a class="btn" href="#publications">Publications & Writing</a>
         <a class="btn" href="/pipelines/geospatial-data-pipelines/">Pipelines</a>
         <a class="btn" href="/assets/pdfs/Annie_Mewkill_Resume.pdf">Resume (PDF)</a>
-        <a class="btn" href="https://github.com/agmewkill">GitHub</a>
+
+        <a
+          class="btn"
+          href="https://github.com/agmewkill"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
         <a class="btn" href="mailto:agmewkill@gmail.com">Email</a>
       </div>
 
@@ -199,87 +284,260 @@
       </div>
     </header>
 
+
     <section class="grid">
+
       <div class="card">
         <h2>What I do</h2>
+
         <p>
-          I design practical, testable geospatial data workflows that turn messy real-world inputs
-          into documented, analysis-ready datasets. I prioritize clear schemas, QA checks,
-          reproducibility, and privacy-preserving aggregation.
+          I design practical, testable geospatial data workflows that turn messy
+          real-world inputs into documented, analysis-ready datasets. I prioritize
+          clear schemas, quality assurance, reproducibility, and privacy-preserving
+          aggregation.
         </p>
+
         <ul>
-          <li>Ingest + standardize tabular and spatial data (ACS, TIGER/Line, local admin data)</li>
-          <li>Transform datasets (normalization, joins, tract-level aggregation)</li>
-          <li>Validate outputs (schema checks, missingness audits, geometry QA)</li>
-          <li>Communicate results with maps, write-ups, and lightweight interactive tools</li>
+          <li>
+            Ingest and standardize tabular and spatial data, including ACS,
+            TIGER/Line, and local administrative datasets
+          </li>
+
+          <li>
+            Transform datasets through normalization, spatial joins, feature
+            engineering, and tract-level aggregation
+          </li>
+
+          <li>
+            Validate outputs using schema checks, missingness audits, and geometry QA
+          </li>
+
+          <li>
+            Communicate results through maps, research writing, and lightweight
+            interactive tools
+          </li>
         </ul>
       </div>
+
 
       <div class="card">
         <h2>Featured work</h2>
 
         <div class="proj">
+
           <div class="projitem">
-            <div class="projtitle">Encampments × ACS (San Diego)</div>
-            <div class="projmeta">Tract-level analysis • privacy-preserving aggregation • thesis-aligned</div>
+            <div class="projtitle">
+              Encampments × ACS (San Diego)
+            </div>
+
+            <div class="projmeta">
+              Tract-level analysis • privacy-preserving aggregation • thesis research
+            </div>
+
             <div class="projlinks">
               <a class="chip" href="/projects/encampments/">Project</a>
-              <a class="chip" href="/projects/encampments/thesis-context.html">Thesis context</a>
-              <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments">Code</a>
+
+              <a
+                class="chip"
+                href="/projects/encampments/thesis-context.html"
+              >
+                Thesis context
+              </a>
+
+              <a
+                class="chip"
+                href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/encampments"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Code
+              </a>
             </div>
           </div>
 
+
           <div class="projitem">
-            <div class="projtitle">PITC × ACS Correlations (p5.js)</div>
-            <div class="projmeta">Methods write-up + interactive demo • client-side QA</div>
+            <div class="projtitle">
+              PITC × ACS Correlations (p5.js)
+            </div>
+
+            <div class="projmeta">
+              Methods write-up + interactive demo • client-side QA
+            </div>
+
             <div class="projlinks">
-              <a class="chip" href="/projects/pitc-acs-correlation.html">Write-up</a>
-              <a class="chip" href="/projects/pitc-acs/">Live demo</a>
-              <a class="chip" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs">Code</a>
+              <a
+                class="chip"
+                href="/projects/pitc-acs-correlation.html"
+              >
+                Write-up
+              </a>
+
+              <a
+                class="chip"
+                href="/projects/pitc-acs/"
+              >
+                Live demo
+              </a>
+
+              <a
+                class="chip"
+                href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/pitc-acs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Code
+              </a>
             </div>
           </div>
 
+
           <div class="projitem">
-            <div class="projtitle">Public Bathroom Access Audit (In Progress)</div>
-            <div class="projmeta">Open-source map + validation pipeline • user-generated geospatial data</div>
+            <div class="projtitle">
+              Public Bathroom Access Audit
+            </div>
+
+            <div class="projmeta">
+              Open-source mapping • validation pipeline • public infrastructure
+            </div>
+
             <div class="projlinks">
               <a class="chip" href="/projects/bathrooms/">Project</a>
-              <a class="chip" href="/pipelines/bathrooms/">Pipeline (WIP)</a>
+              <a class="chip" href="/pipelines/bathrooms/">Pipeline</a>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
+
     </section>
 
+
+    <section class="publications" id="publications">
+
+      <div class="card">
+        <h2>Publications & Writing</h2>
+
+        <div class="publist">
+
+          <article class="pubitem">
+
+            <div class="pubtitle">
+              Structural Inequities and Health With Scale Dependence:
+              The Possible Social Determinants of Health in Correlation
+              With Homeless Encampments in San Diego County
+            </div>
+
+            <div class="pubmeta">
+              Annie Gallup Mewkill · Master's Thesis ·
+              San Diego State University · 2026
+            </div>
+
+            <p class="pubdesc">
+              Examines relationships between homeless encampments and social
+              determinants of health in San Diego County, with particular
+              attention to how observed relationships vary across geographic
+              scales.
+            </p>
+
+            <div class="publinks">
+              <a
+                class="chip"
+                href="https://www.proquest.com/docview/3375141168"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on ProQuest ↗
+              </a>
+            </div>
+
+          </article>
+
+
+          <article class="pubitem">
+
+            <div class="pubtitle">
+              San Diego’s Public Restroom Problem Goes Far Beyond Our Beaches
+            </div>
+
+            <div class="pubmeta">
+              Megan Welsh Carroll, Anna Mewkill &amp; Yashvi Sanam ·
+              <em>Voice of San Diego</em> · August 13, 2026
+            </div>
+
+            <p class="pubdesc">
+              A public-facing examination of gaps in San Diego’s public restroom
+              infrastructure and ongoing efforts to map and evaluate restroom
+              accessibility across the region.
+            </p>
+
+            <div class="publinks">
+              <a
+                class="chip"
+                href="https://voiceofsandiego.org/2026/08/13/san-diegos-public-restroom-problem-goes-far-beyond-our-beaches/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read Article ↗
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+
+    </section>
+
+
     <section class="grid">
+
       <div class="card">
         <h2>Current focus</h2>
+
         <ul>
-          <li>Encampments × ACS tract-level descriptives and modeling-ready feature tables</li>
-          <li>Schema-first pipelines with explicit QA and documentation</li>
-          <li>Open-source infrastructure audits (bathrooms) with user input + validation</li>
+          <li>
+            Geospatial analysis of homelessness, public infrastructure,
+            and neighborhood-level inequities
+          </li>
+
+          <li>
+            Schema-first geospatial pipelines with explicit QA and documentation
+          </li>
+
+          <li>
+            Open-source public infrastructure audits using mapping,
+            user-contributed data, and validation workflows
+          </li>
         </ul>
       </div>
+
 
       <div class="card">
         <h2>Currently learning</h2>
+
         <ul>
           <li>Docker for repeatable geospatial workflows</li>
-          <li>PostGIS fundamentals (storage, indexing)</li>
-          <li>FastAPI patterns for geospatial data access (prototype stage)</li>
+          <li>PostGIS fundamentals, including spatial storage and indexing</li>
+          <li>FastAPI patterns for geospatial data access and lightweight APIs</li>
         </ul>
       </div>
+
     </section>
+
 
     <footer>
       © <span id="year"></span> Annie Mewkill · San Diego, CA ·
       <a href="mailto:agmewkill@gmail.com">agmewkill@gmail.com</a>
     </footer>
+
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
+
 </body>
 </html>
+```
