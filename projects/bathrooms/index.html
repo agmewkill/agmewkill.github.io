@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Public bathroom access audit for San Diego County. Open-source geospatial data engineering project focused on validation, accessibility, and policy use." />
+  <meta
+    name="description"
+    content="Public restroom access audit for San Diego County. Open-source geospatial auditing system built with Leaflet, Google Sheets, Google Apps Script, and GitHub Pages."
+  />
   <title>Public Bathrooms Audit — San Diego | Annie Mewkill</title>
 
-  <!-- ArcGIS embeddable components (legacy reference only) -->
-  <script
-    type="module"
-    src="https://js.arcgis.com/4.34/embeddable-components/">
-  </script>
-
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      color-scheme: light dark;
+    }
 
     body {
       margin: 0;
@@ -21,7 +20,10 @@
       line-height: 1.55;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .wrap {
       max-width: 980px;
@@ -29,7 +31,6 @@
       padding: 28px 18px;
     }
 
-    /* top navigation */
     .topbar {
       display: flex;
       gap: 10px;
@@ -56,7 +57,7 @@
     }
 
     .lead {
-      max-width: 75ch;
+      max-width: 78ch;
       opacity: 0.9;
       margin: 0 0 18px;
     }
@@ -89,7 +90,9 @@
       padding-left: 18px;
     }
 
-    li { margin: 6px 0; }
+    li {
+      margin: 6px 0;
+    }
 
     .links {
       margin-top: 12px;
@@ -97,6 +100,67 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(127,127,127,0.30);
+      background: rgba(127,127,127,0.08);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .flow {
+      overflow-x: auto;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(127,127,127,0.07);
+      border: 1px solid rgba(127,127,127,0.20);
+    }
+
+    .flow pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      white-space: pre;
+    }
+
+    .statusRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .statusItem {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 1px rgba(127,127,127,0.25);
+    }
+
+    .open { background: #2563eb; }
+    .closed { background: #dc2626; }
+    .unknown { background: #808080; }
 
     footer {
       margin-top: 28px;
@@ -106,7 +170,9 @@
       font-size: 0.95rem;
     }
 
-    code { font-size: 0.95em; }
+    code {
+      font-size: 0.95em;
+    }
   </style>
 </head>
 
@@ -117,16 +183,25 @@
     <div class="topbar" aria-label="Page navigation">
       <a class="btn" href="/">← Home</a>
       <a class="btn" href="/projects/">Projects</a>
-      <a class="btn" href="https://github.com/agmewkill/agmewkill.github.io/tree/main/projects/bathrooms">Code</a>
+      <a
+        class="btn"
+        href="https://github.com/psj-sdsu/auditing-sd-bathrooms"
+        target="_blank"
+        rel="noopener"
+      >
+        Project Code
+      </a>
     </div>
 
     <!-- HEADER -->
     <header>
       <h1>Public Bathrooms Audit — San Diego County</h1>
+
       <p class="lead">
-        An open-source geospatial project auditing public bathroom access across
-        San Diego County to support accessibility planning, service delivery,
-        and policy decision-making.
+        An open-source geospatial auditing system for documenting public restroom
+        access across San Diego County. The project now combines a public-facing
+        Leaflet map, field-audit workflow, Google Sheets data storage, Google Apps
+        Script review automation, and GitHub Pages deployment.
       </p>
     </header>
 
@@ -135,72 +210,235 @@
       <!-- PROJECT OVERVIEW -->
       <section class="card">
         <h2>Project overview</h2>
+
         <ul>
-          <li><strong>Goal:</strong> Create a reliable, auditable inventory of public bathroom access</li>
-          <li><strong>Unit of analysis:</strong> Individual bathroom locations (points)</li>
-          <li><strong>Use cases:</strong> Public access, service planning, policy analysis</li>
-          <li><strong>Status:</strong> In progress — migrating from proprietary GIS to open source</li>
+          <li>
+            <strong>Goal:</strong>
+            Maintain a reliable and auditable inventory of public restroom access.
+          </li>
+
+          <li>
+            <strong>Unit of analysis:</strong>
+            Individual restroom locations represented as geospatial points.
+          </li>
+
+          <li>
+            <strong>Use cases:</strong>
+            Field auditing, public access, service planning, data quality review,
+            and policy analysis.
+          </li>
+
+          <li>
+            <strong>Status:</strong>
+            Active development — the project has moved from a proprietary GIS
+            workflow to an open-source web mapping and review system.
+          </li>
         </ul>
       </section>
 
-      <!-- ENGINEERING INTENT -->
+      <!-- CURRENT IMPLEMENTATION -->
       <section class="card">
-        <h2>Engineering focus</h2>
-        <ul>
-          <li>Schema-driven validation for user-submitted locations</li>
-          <li>Separation of ingest, validation, storage, and visualization layers</li>
-          <li>Support for iterative updates and QA workflows</li>
-          <li>Designed to scale beyond a single city or dataset</li>
-        </ul>
-      </section>
-
-      <!-- LEGACY MAP -->
-      <section class="card">
-        <h2>Current implementation (legacy)</h2>
+        <h2>Current implementation</h2>
 
         <p class="meta">
-          This ArcGIS Online map represents the current operational version of the
-          project. It is included here for reference while the open-source pipeline
-          is under active development.
+          The current system replaces the earlier ArcGIS-centered workflow with
+          a lightweight open-source stack designed for field use and iterative review.
         </p>
 
-        <ul>
-          <li>Proprietary hosting (ArcGIS Online)</li>
-          <li>Manual update workflows</li>
-          <li>No automated validation or versioning</li>
-        </ul>
-
-        <div style="
-          margin-top:16px;
-          border:1px solid rgba(127,127,127,0.25);
-          border-radius:14px;
-          overflow:hidden;
-          background:#fff;
-        ">
-          <arcgis-embedded-map
-            style="height:520px;width:100%;"
-            item-id="03ddf6f4343f4920aee5f0233ae384ae"
-            portal-url="https://sdsugeo.maps.arcgis.com"
-            theme="light"
-            heading-enabled
-            legend-enabled>
-          </arcgis-embedded-map>
+        <div class="stack">
+          <span class="chip">Leaflet</span>
+          <span class="chip">OpenStreetMap</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">Google Sheets</span>
+          <span class="chip">Google Apps Script</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">Papa Parse</span>
         </div>
 
-        <p style="margin-top:12px; font-size:0.95rem; opacity:0.8;">
-          Planned replacement: open-source web map backed by FastAPI ingestion,
-          schema validation, and a spatial database.
-        </p>
+        <ul>
+          <li>Full-screen interactive public restroom map</li>
+          <li>Map markers styled by restroom status</li>
+          <li>Button-triggered field audit form</li>
+          <li>Existing restroom update workflow using persistent IDs</li>
+          <li>New restroom submission workflow using map clicks or device GPS</li>
+          <li>Google Sheets as the live approved restroom data source</li>
+          <li>Google Apps Script as the submission and approval layer</li>
+        </ul>
+
+        <div class="statusRow" aria-label="Restroom status marker legend">
+          <span class="statusItem"><span class="dot open"></span>Open</span>
+          <span class="statusItem"><span class="dot closed"></span>Closed</span>
+          <span class="statusItem"><span class="dot unknown"></span>Unknown</span>
+        </div>
       </section>
 
-      <!-- ROADMAP -->
+      <!-- SYSTEM ARCHITECTURE -->
       <section class="card">
-        <h2>Planned migration roadmap</h2>
+        <h2>System architecture</h2>
+
+        <p class="meta">
+          The map and the review workflow are intentionally separated so unreviewed
+          field submissions do not immediately alter the public-facing dataset.
+        </p>
+
+        <div class="flow">
+<pre>PUBLIC MAP
+GitHub Pages
+     │
+     │ reads approved restroom data
+     ▼
+Google Sheets: restrooms_editable
+     ▲
+     │
+     │ approved additions / updates
+     │
+Google Apps Script
+     ▲
+     │
+     │ field submission
+     │
+GitHub audit form
+     │
+     ▼
+Google Sheets: submissions
+approved = FALSE
+     │
+     ▼
+Project-team review
+     │
+approved = TRUE
+     ▼
+Google Apps Script promotes change</pre>
+        </div>
+      </section>
+
+      <!-- DATA / ID MODEL -->
+      <section class="card">
+        <h2>Data model and update logic</h2>
+
         <ul>
-          <li>Define and publish a public bathroom schema</li>
-          <li>Build FastAPI endpoints for data submission and review</li>
-          <li>Store validated data in PostGIS</li>
-          <li>Replace proprietary map with open-source web visualization</li>
+          <li>
+            Each restroom has a persistent <code>globalid</code>.
+          </li>
+
+          <li>
+            When an existing restroom is audited, its <code>globalid</code>
+            is submitted as <code>place_id</code>.
+          </li>
+
+          <li>
+            Approved <code>update</code> submissions modify the matching restroom
+            rather than creating duplicates.
+          </li>
+
+          <li>
+            Approved <code>new</code> submissions receive a new permanent ID
+            before being added to the master dataset.
+          </li>
+
+          <li>
+            The public map reads only from the approved master dataset,
+            not directly from the unreviewed submission log.
+          </li>
+        </ul>
+      </section>
+
+      <!-- AUDIT UX -->
+      <section class="card">
+        <h2>Field-audit interface</h2>
+
+        <p class="meta">
+          The audit form is hidden by default so users can browse the map without
+          immediately interacting with a large form.
+        </p>
+
+        <ul>
+          <li>
+            A floating <strong>Start an Audit</strong> button opens the form for
+            a new restroom.
+          </li>
+
+          <li>
+            Clicking an existing restroom opens a popup with a
+            <strong>Suggest a change</strong> action.
+          </li>
+
+          <li>
+            Existing restroom information can be prefilled while the current
+            researcher's name, audit date, and new notes remain blank.
+          </li>
+
+          <li>
+            New restroom coordinates can be set by clicking the map or using
+            device geolocation.
+          </li>
+
+          <li>
+            Desktop users receive a slide-out panel; mobile users receive a
+            bottom-sheet style audit interface.
+          </li>
+        </ul>
+      </section>
+
+      <!-- DATA PRESERVATION -->
+      <section class="card">
+        <h2>Data preservation and research QA</h2>
+
+        <p class="meta">
+          A major design requirement is preserving project-team edits and closure
+          notes while still allowing new field observations to enter the system.
+        </p>
+
+        <ul>
+          <li>
+            Team-curated closure information is treated as research history,
+            not disposable metadata.
+          </li>
+
+          <li>
+            Existing team notes are not automatically copied into a new auditor's
+            submission.
+          </li>
+
+          <li>
+            Approved updates are designed to modify selected fields without
+            erasing unrelated baseline attributes.
+          </li>
+
+          <li>
+            The longer-term data model distinguishes between current restroom state,
+            project-team review history, and field-audit history.
+          </li>
+        </ul>
+      </section>
+
+      <!-- ENGINEERING FOCUS -->
+      <section class="card">
+        <h2>Engineering focus</h2>
+
+        <ul>
+          <li>Open-source replacement for a previously proprietary GIS workflow</li>
+          <li>Separation of public display, submission, review, and publication layers</li>
+          <li>Stable restroom identifiers for repeat observations over time</li>
+          <li>Approval-gated publishing for user-submitted field data</li>
+          <li>Preservation of project-team edits and closure notes</li>
+          <li>Mobile-friendly field auditing using geolocation and map interaction</li>
+          <li>Simple deployment architecture that can be maintained without a traditional server</li>
+        </ul>
+      </section>
+
+      <!-- NEXT STEPS -->
+      <section class="card">
+        <h2>Next steps</h2>
+
+        <ul>
+          <li>Separate team notes from field-audit notes in the master schema</li>
+          <li>Add clearer audit-history and provenance fields</li>
+          <li>Improve map filtering and status exploration</li>
+          <li>Add stronger validation for incoming records</li>
+          <li>Document the Google Sheets and Apps Script maintenance workflow</li>
+          <li>Continue evaluating migration paths toward a spatial database as the project scales</li>
         </ul>
       </section>
 
